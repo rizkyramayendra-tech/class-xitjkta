@@ -10,33 +10,251 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProtectedRouteImport } from './routes/_protected'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as DataSiswaRouteImport } from './routes/data-siswa'
+import { Route as GaleriRouteImport } from './routes/galeri'
+import { Route as InformasiSekolahRouteImport } from './routes/informasi-sekolah'
+import { Route as JadwalPelajaranRouteImport } from './routes/jadwal-pelajaran'
+import { Route as JadwalPiketRouteImport } from './routes/jadwal-piket'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as PengumumanRouteImport } from './routes/pengumuman'
+import { Route as PrestasiRouteImport } from './routes/prestasi'
+import { Route as ProfilKelasRouteImport } from './routes/profil-kelas'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as TugasMateriRouteImport } from './routes/tugas-materi'
+import { Route as WaliKelasRouteImport } from './routes/wali-kelas'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as ProtectedAdminIndexRouteImport } from './routes/_protected.admin.index'
+import { Route as ProtectedAdminSectionRouteImport } from './routes/_protected.admin.$section'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataSiswaRoute = DataSiswaRouteImport.update({
+  id: '/data-siswa',
+  path: '/data-siswa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriRoute = GaleriRouteImport.update({
+  id: '/galeri',
+  path: '/galeri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InformasiSekolahRoute = InformasiSekolahRouteImport.update({
+  id: '/informasi-sekolah',
+  path: '/informasi-sekolah',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JadwalPelajaranRoute = JadwalPelajaranRouteImport.update({
+  id: '/jadwal-pelajaran',
+  path: '/jadwal-pelajaran',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JadwalPiketRoute = JadwalPiketRouteImport.update({
+  id: '/jadwal-piket',
+  path: '/jadwal-piket',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PengumumanRoute = PengumumanRouteImport.update({
+  id: '/pengumuman',
+  path: '/pengumuman',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrestasiRoute = PrestasiRouteImport.update({
+  id: '/prestasi',
+  path: '/prestasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilKelasRoute = ProfilKelasRouteImport.update({
+  id: '/profil-kelas',
+  path: '/profil-kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TugasMateriRoute = TugasMateriRouteImport.update({
+  id: '/tugas-materi',
+  path: '/tugas-materi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaliKelasRoute = WaliKelasRouteImport.update({
+  id: '/wali-kelas',
+  path: '/wali-kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedAdminIndexRoute = ProtectedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAdminSectionRoute = ProtectedAdminSectionRouteImport.update({
+  id: '/admin/$section',
+  path: '/admin/$section',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/$section': typeof ProtectedAdminSectionRoute
+  '/admin/': typeof ProtectedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/$section': typeof ProtectedAdminSectionRoute
+  '/admin': typeof ProtectedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/_protected/admin/$section': typeof ProtectedAdminSectionRoute
+  '/_protected/admin/': typeof ProtectedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/reset-password'
+    | '/tugas-materi'
+    | '/wali-kelas'
+    | '/admin/login'
+    | '/admin/$section'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/reset-password'
+    | '/tugas-materi'
+    | '/wali-kelas'
+    | '/admin/login'
+    | '/admin/$section'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/_protected'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/reset-password'
+    | '/tugas-materi'
+    | '/wali-kelas'
+    | '/admin/login'
+    | '/_protected/admin/$section'
+    | '/_protected/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  AgendaRoute: typeof AgendaRoute
+  DataSiswaRoute: typeof DataSiswaRoute
+  GaleriRoute: typeof GaleriRoute
+  InformasiSekolahRoute: typeof InformasiSekolahRoute
+  JadwalPelajaranRoute: typeof JadwalPelajaranRoute
+  JadwalPiketRoute: typeof JadwalPiketRoute
+  KontakRoute: typeof KontakRoute
+  PengumumanRoute: typeof PengumumanRoute
+  PrestasiRoute: typeof PrestasiRoute
+  ProfilKelasRoute: typeof ProfilKelasRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  TugasMateriRoute: typeof TugasMateriRoute
+  WaliKelasRoute: typeof WaliKelasRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +266,159 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-siswa': {
+      id: '/data-siswa'
+      path: '/data-siswa'
+      fullPath: '/data-siswa'
+      preLoaderRoute: typeof DataSiswaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeri': {
+      id: '/galeri'
+      path: '/galeri'
+      fullPath: '/galeri'
+      preLoaderRoute: typeof GaleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-sekolah': {
+      id: '/informasi-sekolah'
+      path: '/informasi-sekolah'
+      fullPath: '/informasi-sekolah'
+      preLoaderRoute: typeof InformasiSekolahRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jadwal-pelajaran': {
+      id: '/jadwal-pelajaran'
+      path: '/jadwal-pelajaran'
+      fullPath: '/jadwal-pelajaran'
+      preLoaderRoute: typeof JadwalPelajaranRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jadwal-piket': {
+      id: '/jadwal-piket'
+      path: '/jadwal-piket'
+      fullPath: '/jadwal-piket'
+      preLoaderRoute: typeof JadwalPiketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pengumuman': {
+      id: '/pengumuman'
+      path: '/pengumuman'
+      fullPath: '/pengumuman'
+      preLoaderRoute: typeof PengumumanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prestasi': {
+      id: '/prestasi'
+      path: '/prestasi'
+      fullPath: '/prestasi'
+      preLoaderRoute: typeof PrestasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil-kelas': {
+      id: '/profil-kelas'
+      path: '/profil-kelas'
+      fullPath: '/profil-kelas'
+      preLoaderRoute: typeof ProfilKelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tugas-materi': {
+      id: '/tugas-materi'
+      path: '/tugas-materi'
+      fullPath: '/tugas-materi'
+      preLoaderRoute: typeof TugasMateriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wali-kelas': {
+      id: '/wali-kelas'
+      path: '/wali-kelas'
+      fullPath: '/wali-kelas'
+      preLoaderRoute: typeof WaliKelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/admin/': {
+      id: '/_protected/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof ProtectedAdminIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/$section': {
+      id: '/_protected/admin/$section'
+      path: '/admin/$section'
+      fullPath: '/admin/$section'
+      preLoaderRoute: typeof ProtectedAdminSectionRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedAdminSectionRoute: typeof ProtectedAdminSectionRoute
+  ProtectedAdminIndexRoute: typeof ProtectedAdminIndexRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedAdminSectionRoute: ProtectedAdminSectionRoute,
+  ProtectedAdminIndexRoute: ProtectedAdminIndexRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  AgendaRoute: AgendaRoute,
+  DataSiswaRoute: DataSiswaRoute,
+  GaleriRoute: GaleriRoute,
+  InformasiSekolahRoute: InformasiSekolahRoute,
+  JadwalPelajaranRoute: JadwalPelajaranRoute,
+  JadwalPiketRoute: JadwalPiketRoute,
+  KontakRoute: KontakRoute,
+  PengumumanRoute: PengumumanRoute,
+  PrestasiRoute: PrestasiRoute,
+  ProfilKelasRoute: ProfilKelasRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  TugasMateriRoute: TugasMateriRoute,
+  WaliKelasRoute: WaliKelasRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

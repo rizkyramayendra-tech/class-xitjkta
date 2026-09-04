@@ -1,0 +1,48 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
+import { StorageImage } from "@/components/StorageImage";
+import { useSiteContent } from "@/lib/cms";
+
+export const Route = createFileRoute("/wali-kelas")({
+  head: () => ({
+    meta: [
+      { title: "Wali Kelas — XI TJKT A SMKN 1 Gunung Talang" },
+      {
+        name: "description",
+        content: "Profil wali kelas XI TJKT A SMKN 1 Gunung Talang beserta pesan untuk siswa.",
+      },
+      { property: "og:title", content: "Wali Kelas — XI TJKT A" },
+      { property: "og:description", content: "Profil dan pesan wali kelas XI TJKT A." },
+    ],
+  }),
+  component: WaliKelas,
+});
+
+function WaliKelas() {
+  const { data } = useSiteContent("teacher");
+
+  return (
+    <SiteLayout>
+      <PageHeader title="Wali Kelas" description="Pembimbing dan penanggung jawab kelas XI TJKT A." />
+      <div className="mx-auto max-w-5xl px-4 py-12">
+        <div className="panel grid gap-8 p-6 md:grid-cols-[240px_1fr] md:p-8">
+          <StorageImage
+            src={data?.['photo_url']}
+            alt={`Foto ${data?.['name'] ?? "wali kelas"}`}
+            className="aspect-[3/4] w-full rounded-xl border border-border object-cover"
+          />
+          <div>
+            <h2 className="font-display text-2xl font-bold">{data?.['name'] || "-"}</h2>
+            <p className="mt-1 text-sm font-medium text-primary">{data?.['position'] || "Wali Kelas"}</p>
+            <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+              {data?.['description'] || "Belum diisi."}
+            </p>
+            <blockquote className="mt-6 rounded-lg border-l-4 border-primary bg-secondary p-4 text-sm italic">
+              “{data?.['message'] || "Belum ada pesan."}”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </SiteLayout>
+  );
+}

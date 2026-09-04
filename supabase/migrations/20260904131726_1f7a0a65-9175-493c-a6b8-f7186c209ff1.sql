@@ -1,0 +1,4 @@
+CREATE POLICY "public read media" ON storage.objects FOR SELECT USING (bucket_id IN ('media','files'));
+CREATE POLICY "admin insert media" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id IN ('media','files') AND public.is_admin());
+CREATE POLICY "admin update media" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id IN ('media','files') AND public.is_admin()) WITH CHECK (bucket_id IN ('media','files') AND public.is_admin());
+CREATE POLICY "admin delete media" ON storage.objects FOR DELETE TO authenticated USING (bucket_id IN ('media','files') AND public.is_admin());
