@@ -9,12 +9,12 @@ import { removeFile, uploadFile, type Bucket } from "@/lib/cms";
 
 type Props = {
   label: string;
-  value?: string | null;
+  value?: string | null | undefined;
   onChange: (ref: string) => void;
-  bucket?: Bucket;
-  folder?: string;
-  accept?: string;
-  preview?: boolean;
+  bucket?: Bucket | undefined;
+  folder?: string | undefined;
+  accept?: string | undefined;
+  preview?: boolean | undefined;
 };
 
 export function MediaField({

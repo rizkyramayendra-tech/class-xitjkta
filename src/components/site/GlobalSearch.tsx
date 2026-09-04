@@ -59,7 +59,7 @@ export function GlobalSearch() {
             .eq("status", "published")
             .ilike(source.column, `%${term.trim()}%`)
             .limit(4);
-          return ((data ?? []) as Record<string, string>[]).map((row) => ({
+          return ((data ?? []) as unknown as Record<string, string>[]).map((row) => ({
             label: row[source.column] ?? "",
             group: source.group,
             to: source.to,

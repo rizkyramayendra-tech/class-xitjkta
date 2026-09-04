@@ -121,7 +121,7 @@ export function CrudManager({ config }: { config: CrudConfig }) {
         payload[field.name] = value ?? null;
       }
       if (editing) {
-        const { error } = await db.from(config.table).update(payload).eq("id", editing.id as string);
+        const { error } = await db.from(config.table).update(payload).eq("id", editing['id'] as string);
         if (error) throw error;
         await logActivity("update", config.table, `Mengubah ${config.singular}`);
         toast.success(`${config.singular} berhasil diperbarui.`);
@@ -145,7 +145,7 @@ export function CrudManager({ config }: { config: CrudConfig }) {
   async function confirmDelete() {
     if (!toDelete) return;
     try {
-      const { error } = await db.from(config.table).delete().eq("id", toDelete.id as string);
+      const { error } = await db.from(config.table).delete().eq("id", toDelete['id'] as string);
       if (error) throw error;
       await logActivity("delete", config.table, `Menghapus ${config.singular}`);
       toast.success("Data berhasil dihapus.");
@@ -207,12 +207,12 @@ export function CrudManager({ config }: { config: CrudConfig }) {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={String(row.id)} className="border-t border-border align-top">
+                <tr key={String(row['id'])} className="border-t border-border align-top">
                   {config.columns.map((col) => (
                     <td key={col.name} className="max-w-[280px] p-3">
                       {col.name === "status" ? (
-                        <Badge variant={row.status === "published" ? "default" : "secondary"}>
-                          {row.status === "published" ? "Terbit" : "Draf"}
+                        <Badge variant={row['status'] === "published" ? "default" : "secondary"}>
+                          {row['status'] === "published" ? "Terbit" : "Draf"}
                         </Badge>
                       ) : (
                         <span className="line-clamp-2 break-words">
@@ -265,7 +265,6 @@ export function CrudManager({ config }: { config: CrudConfig }) {
                     bucket={field.bucket ?? (field.type === "file" ? "files" : "media")}
                     folder={field.folder ?? config.table}
                     preview={field.type === "image"}
-                    accept={field.type === "file" ? undefined : undefined}
                     onChange={(ref) => setForm((f) => ({ ...f, [field.name]: ref }))}
                   />
                 );

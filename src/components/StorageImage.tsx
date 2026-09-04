@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 import { ImageIcon } from "lucide-react";
 
 type Props = {
-  src?: string | null;
+  src?: string | null | undefined;
   alt: string;
-  className?: string;
-  fallbackClassName?: string;
-  loading?: "lazy" | "eager";
+  className?: string | undefined;
+  fallbackClassName?: string | undefined;
+  loading?: "lazy" | "eager" | undefined;
 };
 
 export function StorageImage({ src, alt, className, fallbackClassName, loading = "lazy" }: Props) {

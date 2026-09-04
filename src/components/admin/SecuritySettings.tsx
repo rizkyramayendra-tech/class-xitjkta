@@ -33,9 +33,8 @@ export function SecuritySettings() {
     setBusy(true);
     const { error } = await supabase.auth.updateUser({
       password: newPassword,
-      // @ts-expect-error current_password is required by Lovable Cloud auth
       current_password: currentPassword,
-    });
+    } as Parameters<typeof supabase.auth.updateUser>[0]);
     setBusy(false);
     if (error) {
       toast.error("Gagal mengubah kata sandi. Pastikan kata sandi saat ini benar.");
