@@ -22,14 +22,14 @@ function InformasiSekolah() {
   const { data } = useSiteContent("school_info");
 
   const rows = [
-    ["Nama Sekolah", data?['name']],
-    ["Alamat", data?['address']],
-    ["Telepon", data?['phone']],
-    ["Email", data?['email']],
-    ["Website", data?['website']],
-    ["Instagram", data?['instagram']],
-    ["Facebook", data?['facebook']],
-    ["YouTube", data?['youtube']],
+    ["Nama Sekolah", data?.['name']],
+    ["Alamat", data?.['address']],
+    ["Telepon", data?.['phone']],
+    ["Email", data?.['email']],
+    ["Website", data?.['website']],
+    ["Instagram", data?.['instagram']],
+    ["Facebook", data?.['facebook']],
+    ["YouTube", data?.['youtube']],
   ] as const;
 
   return (
@@ -40,24 +40,24 @@ function InformasiSekolah() {
           <section className="panel p-6">
             <div className="flex items-center gap-4">
               <StorageImage
-                src={data?['logo_url']}
+                src={data?.['logo_url']}
                 alt="Logo SMKN 1 Gunung Talang"
                 className="h-16 w-16 rounded-lg border border-border object-cover"
               />
               <div>
-                <h2 className="font-display text-xl font-bold">{data?['name'] || "-"}</h2>
-                <p className="text-sm text-muted-foreground">{data?['address'] || "-"}</p>
+                <h2 className="font-display text-xl font-bold">{data?.['name'] || "-"}</h2>
+                <p className="text-sm text-muted-foreground">{data?.['address'] || "-"}</p>
               </div>
             </div>
             <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-              {data?['description'] || "Belum diisi."}
+              {data?.['description'] || "Belum diisi."}
             </p>
           </section>
 
           <section className="panel mt-6 p-6">
             <h2 className="font-display text-lg font-semibold">Program Keahlian</h2>
             <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">
-              {data?['majors'] || "-"}
+              {data?.['majors'] || "-"}
             </p>
           </section>
 
@@ -72,7 +72,7 @@ function InformasiSekolah() {
         </div>
         <aside>
           <StorageImage
-            src={data?['photo_url']}
+            src={data?.['photo_url']}
             alt="Foto gedung SMKN 1 Gunung Talang"
             className="aspect-[4/3] w-full rounded-xl border border-border object-cover"
           />

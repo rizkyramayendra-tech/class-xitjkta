@@ -81,9 +81,9 @@ function Beranda() {
   const galeri = useTable<GalleryItem>("gallery", { orderBy: "order_no", ascending: true, limit: 6 });
 
   const stats = [
-    { value: profile?['student_count'] ?? "34", label: "Siswa", icon: Users },
+    { value: profile?.['student_count'] ?? "34", label: "Siswa", icon: Users },
     { value: "1", label: "Wali Kelas", icon: GraduationCap },
-    { value: profile?['year'] ?? "2026–2027", label: "Tahun Pembelajaran", icon: CalendarDays },
+    { value: profile?.['year'] ?? "2026–2027", label: "Tahun Pembelajaran", icon: CalendarDays },
     { value: "TJKT", label: "Jurusan", icon: BookOpen },
   ];
 
@@ -97,19 +97,19 @@ function Beranda() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-2 lg:py-20">
           <div>
             <Badge variant="secondary" className="mb-4">
-              {site?['hero_year'] ?? "Tahun Pembelajaran 2026–2027"}
+              {site?.['hero_year'] ?? "Tahun Pembelajaran 2026–2027"}
             </Badge>
             <h1 className="font-display text-4xl font-bold sm:text-5xl lg:text-6xl">
-              {site?['hero_title'] ?? "XI TJKT A"}
+              {site?.['hero_title'] ?? "XI TJKT A"}
             </h1>
             <p className="mt-3 text-lg font-medium text-primary">
-              {site?['hero_subtitle'] ?? "Teknik Jaringan Komputer dan Telekomunikasi"}
+              {site?.['hero_subtitle'] ?? "Teknik Jaringan Komputer dan Telekomunikasi"}
             </p>
             <p className="text-sm text-muted-foreground">
-              {site?['hero_school'] ?? "SMKN 1 Gunung Talang"}
+              {site?.['hero_school'] ?? "SMKN 1 Gunung Talang"}
             </p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              {site?['hero_description'] ?? "Portal resmi kelas XI TJKT A."}
+              {site?.['hero_description'] ?? "Portal resmi kelas XI TJKT A."}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -121,7 +121,7 @@ function Beranda() {
             </div>
           </div>
           <div className="relative">
-            {site?['hero_image_url'] ? (
+            {site?.['hero_image_url'] ? (
               <StorageImage
                 src={site['hero_image_url']}
                 alt="Foto utama kelas XI TJKT A"

@@ -23,20 +23,20 @@ function ProfilKelas() {
   const { data } = useSiteContent("class_profile");
 
   const identity = [
-    ["Nama Kelas", data?['class_name']],
-    ["Jurusan", data?['major']],
-    ["Sekolah", data?['school']],
-    ["Tahun Pembelajaran", data?['year']],
-    ["Jumlah Siswa", data?['student_count']],
-    ["Wali Kelas", data?['homeroom']],
+    ["Nama Kelas", data?.['class_name']],
+    ["Jurusan", data?.['major']],
+    ["Sekolah", data?.['school']],
+    ["Tahun Pembelajaran", data?.['year']],
+    ["Jumlah Siswa", data?.['student_count']],
+    ["Wali Kelas", data?.['homeroom']],
   ] as const;
 
   const blocks = [
-    ["Tentang Kelas", data?['about']],
-    ["Visi", data?['vision']],
-    ["Misi", data?['mission']],
-    ["Motto", data?['motto']],
-    ["Tujuan", data?['goals']],
+    ["Tentang Kelas", data?.['about']],
+    ["Visi", data?.['vision']],
+    ["Misi", data?.['mission']],
+    ["Motto", data?.['motto']],
+    ["Tujuan", data?.['goals']],
   ] as const;
 
   return (
@@ -70,7 +70,7 @@ function ProfilKelas() {
           </div>
           <aside>
             <StorageImage
-              src={data?['image_url']}
+              src={data?.['image_url']}
               alt="Foto kelas XI TJKT A"
               className="aspect-[4/3] w-full rounded-xl border border-border object-cover"
             />

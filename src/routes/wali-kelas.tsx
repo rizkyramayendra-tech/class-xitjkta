@@ -27,18 +27,18 @@ function WaliKelas() {
       <div className="mx-auto max-w-5xl px-4 py-12">
         <div className="panel grid gap-8 p-6 md:grid-cols-[240px_1fr] md:p-8">
           <StorageImage
-            src={data?['photo_url']}
-            alt={`Foto ${data?['name'] ?? "wali kelas"}`}
+            src={data?.['photo_url']}
+            alt={`Foto ${data?.['name'] ?? "wali kelas"}`}
             className="aspect-[3/4] w-full rounded-xl border border-border object-cover"
           />
           <div>
-            <h2 className="font-display text-2xl font-bold">{data?['name'] || "-"}</h2>
-            <p className="mt-1 text-sm font-medium text-primary">{data?['position'] || "Wali Kelas"}</p>
+            <h2 className="font-display text-2xl font-bold">{data?.['name'] || "-"}</h2>
+            <p className="mt-1 text-sm font-medium text-primary">{data?.['position'] || "Wali Kelas"}</p>
             <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-              {data?['description'] || "Belum diisi."}
+              {data?.['description'] || "Belum diisi."}
             </p>
             <blockquote className="mt-6 rounded-lg border-l-4 border-primary bg-secondary p-4 text-sm italic">
-              “{data?['message'] || "Belum ada pesan."}”
+              “{data?.['message'] || "Belum ada pesan."}”
             </blockquote>
           </div>
         </div>
