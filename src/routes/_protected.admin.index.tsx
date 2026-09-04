@@ -28,14 +28,14 @@ export const Route = createFileRoute("/_protected/admin/")({
 });
 
 const CARDS = [
-  { table: "students", label: "Siswa", to: "/admin/data-siswa", icon: Users },
-  { table: "resources", label: "Tugas & Materi", to: "/admin/tugas-materi", icon: BookOpen },
-  { table: "announcements", label: "Pengumuman", to: "/admin/pengumuman", icon: Megaphone },
-  { table: "events", label: "Agenda", to: "/admin/agenda", icon: CalendarDays },
-  { table: "achievements", label: "Prestasi", to: "/admin/prestasi", icon: Trophy },
-  { table: "gallery", label: "Galeri", to: "/admin/galeri", icon: Images },
-  { table: "schedules", label: "Jadwal Pelajaran", to: "/admin/jadwal-pelajaran", icon: CalendarDays },
-  { table: "duty_roster", label: "Jadwal Piket", to: "/admin/jadwal-piket", icon: ListChecks },
+  { table: "students", label: "Siswa", section: "data-siswa", icon: Users },
+  { table: "resources", label: "Tugas & Materi", section: "tugas-materi", icon: BookOpen },
+  { table: "announcements", label: "Pengumuman", section: "pengumuman", icon: Megaphone },
+  { table: "events", label: "Agenda", section: "agenda", icon: CalendarDays },
+  { table: "achievements", label: "Prestasi", section: "prestasi", icon: Trophy },
+  { table: "gallery", label: "Galeri", section: "galeri", icon: Images },
+  { table: "schedules", label: "Jadwal Pelajaran", section: "jadwal-pelajaran", icon: CalendarDays },
+  { table: "duty_roster", label: "Jadwal Piket", section: "jadwal-piket", icon: ListChecks },
 ] as const;
 
 function AdminDashboard() {
@@ -65,7 +65,7 @@ function AdminDashboard() {
 
       <div className="mb-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {CARDS.map((card) => (
-          <Link key={card.table} to={card.to} className="panel p-5 transition-colors hover:border-primary">
+          <Link key={card.table} to="/admin/$section" params={{ section: card.section }} className="panel p-5 transition-colors hover:border-primary">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">{card.label}</span>
               <card.icon className="h-4 w-4 text-primary" aria-hidden="true" />

@@ -68,10 +68,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
       {ADMIN_MENU.map((item) => {
         const to = item.slug ? `/admin/${item.slug}` : "/admin";
         const active = pathname === to;
+        const linkProps = item.slug
+          ? ({ to: "/admin/$section", params: { section: item.slug } } as const)
+          : ({ to: "/admin" } as const);
         return (
           <Link
             key={item.label}
-            to={to}
+            {...linkProps}
             onClick={() => setOpen(false)}
             className={cn(
               "flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors",

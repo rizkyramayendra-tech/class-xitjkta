@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as DataSiswaRouteImport } from './routes/data-siswa'
 import { Route as GaleriRouteImport } from './routes/galeri'
@@ -20,12 +21,20 @@ import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as PengumumanRouteImport } from './routes/pengumuman'
 import { Route as PrestasiRouteImport } from './routes/prestasi'
 import { Route as ProfilKelasRouteImport } from './routes/profil-kelas'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as TugasMateriRouteImport } from './routes/tugas-materi'
 import { Route as WaliKelasRouteImport } from './routes/wali-kelas'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as ProtectedAdminIndexRouteImport } from './routes/_protected.admin.index'
+import { Route as ProtectedAdminSectionRouteImport } from './routes/_protected.admin.$section'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgendaRoute = AgendaRouteImport.update({
@@ -78,6 +87,11 @@ const ProfilKelasRoute = ProfilKelasRouteImport.update({
   path: '/profil-kelas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TugasMateriRoute = TugasMateriRouteImport.update({
   id: '/tugas-materi',
   path: '/tugas-materi',
@@ -87,6 +101,21 @@ const WaliKelasRoute = WaliKelasRouteImport.update({
   id: '/wali-kelas',
   path: '/wali-kelas',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedAdminIndexRoute = ProtectedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAdminSectionRoute = ProtectedAdminSectionRouteImport.update({
+  id: '/admin/$section',
+  path: '/admin/$section',
+  getParentRoute: () => ProtectedRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -101,8 +130,12 @@ export interface FileRoutesByFullPath {
   '/pengumuman': typeof PengumumanRoute
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/$section': typeof ProtectedAdminSectionRoute
+  '/admin/': typeof ProtectedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -116,12 +149,17 @@ export interface FileRoutesByTo {
   '/pengumuman': typeof PengumumanRoute
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/$section': typeof ProtectedAdminSectionRoute
+  '/admin': typeof ProtectedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_protected': typeof ProtectedRouteWithChildren
   '/agenda': typeof AgendaRoute
   '/data-siswa': typeof DataSiswaRoute
   '/galeri': typeof GaleriRoute
@@ -132,8 +170,12 @@ export interface FileRoutesById {
   '/pengumuman': typeof PengumumanRoute
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/_protected/admin/$section': typeof ProtectedAdminSectionRoute
+  '/_protected/admin/': typeof ProtectedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -149,8 +191,12 @@ export interface FileRouteTypes {
     | '/pengumuman'
     | '/prestasi'
     | '/profil-kelas'
+    | '/reset-password'
     | '/tugas-materi'
     | '/wali-kelas'
+    | '/admin/login'
+    | '/admin/$section'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -164,11 +210,16 @@ export interface FileRouteTypes {
     | '/pengumuman'
     | '/prestasi'
     | '/profil-kelas'
+    | '/reset-password'
     | '/tugas-materi'
     | '/wali-kelas'
+    | '/admin/login'
+    | '/admin/$section'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/_protected'
     | '/agenda'
     | '/data-siswa'
     | '/galeri'
@@ -179,12 +230,17 @@ export interface FileRouteTypes {
     | '/pengumuman'
     | '/prestasi'
     | '/profil-kelas'
+    | '/reset-password'
     | '/tugas-materi'
     | '/wali-kelas'
+    | '/admin/login'
+    | '/_protected/admin/$section'
+    | '/_protected/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
   AgendaRoute: typeof AgendaRoute
   DataSiswaRoute: typeof DataSiswaRoute
   GaleriRoute: typeof GaleriRoute
@@ -195,8 +251,10 @@ export interface RootRouteChildren {
   PengumumanRoute: typeof PengumumanRoute
   PrestasiRoute: typeof PrestasiRoute
   ProfilKelasRoute: typeof ProfilKelasRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   TugasMateriRoute: typeof TugasMateriRoute
   WaliKelasRoute: typeof WaliKelasRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -206,6 +264,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agenda': {
@@ -278,6 +343,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfilKelasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tugas-materi': {
       id: '/tugas-materi'
       path: '/tugas-materi'
@@ -292,11 +364,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WaliKelasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/admin/': {
+      id: '/_protected/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof ProtectedAdminIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/$section': {
+      id: '/_protected/admin/$section'
+      path: '/admin/$section'
+      fullPath: '/admin/$section'
+      preLoaderRoute: typeof ProtectedAdminSectionRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedAdminSectionRoute: typeof ProtectedAdminSectionRoute
+  ProtectedAdminIndexRoute: typeof ProtectedAdminIndexRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedAdminSectionRoute: ProtectedAdminSectionRoute,
+  ProtectedAdminIndexRoute: ProtectedAdminIndexRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
   AgendaRoute: AgendaRoute,
   DataSiswaRoute: DataSiswaRoute,
   GaleriRoute: GaleriRoute,
@@ -307,8 +415,10 @@ const rootRouteChildren: RootRouteChildren = {
   PengumumanRoute: PengumumanRoute,
   PrestasiRoute: PrestasiRoute,
   ProfilKelasRoute: ProfilKelasRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   TugasMateriRoute: TugasMateriRoute,
   WaliKelasRoute: WaliKelasRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
