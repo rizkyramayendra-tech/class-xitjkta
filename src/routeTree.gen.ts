@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as DataSiswaRouteImport } from './routes/data-siswa'
+import { Route as GaleriRouteImport } from './routes/galeri'
+import { Route as InformasiSekolahRouteImport } from './routes/informasi-sekolah'
+import { Route as JadwalPelajaranRouteImport } from './routes/jadwal-pelajaran'
+import { Route as JadwalPiketRouteImport } from './routes/jadwal-piket'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as PengumumanRouteImport } from './routes/pengumuman'
+import { Route as PrestasiRouteImport } from './routes/prestasi'
+import { Route as ProfilKelasRouteImport } from './routes/profil-kelas'
+import { Route as TugasMateriRouteImport } from './routes/tugas-materi'
+import { Route as WaliKelasRouteImport } from './routes/wali-kelas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataSiswaRoute = DataSiswaRouteImport.update({
+  id: '/data-siswa',
+  path: '/data-siswa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriRoute = GaleriRouteImport.update({
+  id: '/galeri',
+  path: '/galeri',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InformasiSekolahRoute = InformasiSekolahRouteImport.update({
+  id: '/informasi-sekolah',
+  path: '/informasi-sekolah',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JadwalPelajaranRoute = JadwalPelajaranRouteImport.update({
+  id: '/jadwal-pelajaran',
+  path: '/jadwal-pelajaran',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JadwalPiketRoute = JadwalPiketRouteImport.update({
+  id: '/jadwal-piket',
+  path: '/jadwal-piket',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PengumumanRoute = PengumumanRouteImport.update({
+  id: '/pengumuman',
+  path: '/pengumuman',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrestasiRoute = PrestasiRouteImport.update({
+  id: '/prestasi',
+  path: '/prestasi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilKelasRoute = ProfilKelasRouteImport.update({
+  id: '/profil-kelas',
+  path: '/profil-kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TugasMateriRoute = TugasMateriRouteImport.update({
+  id: '/tugas-materi',
+  path: '/tugas-materi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaliKelasRoute = WaliKelasRouteImport.update({
+  id: '/wali-kelas',
+  path: '/wali-kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/data-siswa': typeof DataSiswaRoute
+  '/galeri': typeof GaleriRoute
+  '/informasi-sekolah': typeof InformasiSekolahRoute
+  '/jadwal-pelajaran': typeof JadwalPelajaranRoute
+  '/jadwal-piket': typeof JadwalPiketRoute
+  '/kontak': typeof KontakRoute
+  '/pengumuman': typeof PengumumanRoute
+  '/prestasi': typeof PrestasiRoute
+  '/profil-kelas': typeof ProfilKelasRoute
+  '/tugas-materi': typeof TugasMateriRoute
+  '/wali-kelas': typeof WaliKelasRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/tugas-materi'
+    | '/wali-kelas'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/tugas-materi'
+    | '/wali-kelas'
+  id:
+    | '__root__'
+    | '/'
+    | '/agenda'
+    | '/data-siswa'
+    | '/galeri'
+    | '/informasi-sekolah'
+    | '/jadwal-pelajaran'
+    | '/jadwal-piket'
+    | '/kontak'
+    | '/pengumuman'
+    | '/prestasi'
+    | '/profil-kelas'
+    | '/tugas-materi'
+    | '/wali-kelas'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgendaRoute: typeof AgendaRoute
+  DataSiswaRoute: typeof DataSiswaRoute
+  GaleriRoute: typeof GaleriRoute
+  InformasiSekolahRoute: typeof InformasiSekolahRoute
+  JadwalPelajaranRoute: typeof JadwalPelajaranRoute
+  JadwalPiketRoute: typeof JadwalPiketRoute
+  KontakRoute: typeof KontakRoute
+  PengumumanRoute: typeof PengumumanRoute
+  PrestasiRoute: typeof PrestasiRoute
+  ProfilKelasRoute: typeof ProfilKelasRoute
+  TugasMateriRoute: typeof TugasMateriRoute
+  WaliKelasRoute: typeof WaliKelasRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-siswa': {
+      id: '/data-siswa'
+      path: '/data-siswa'
+      fullPath: '/data-siswa'
+      preLoaderRoute: typeof DataSiswaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeri': {
+      id: '/galeri'
+      path: '/galeri'
+      fullPath: '/galeri'
+      preLoaderRoute: typeof GaleriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/informasi-sekolah': {
+      id: '/informasi-sekolah'
+      path: '/informasi-sekolah'
+      fullPath: '/informasi-sekolah'
+      preLoaderRoute: typeof InformasiSekolahRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jadwal-pelajaran': {
+      id: '/jadwal-pelajaran'
+      path: '/jadwal-pelajaran'
+      fullPath: '/jadwal-pelajaran'
+      preLoaderRoute: typeof JadwalPelajaranRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jadwal-piket': {
+      id: '/jadwal-piket'
+      path: '/jadwal-piket'
+      fullPath: '/jadwal-piket'
+      preLoaderRoute: typeof JadwalPiketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pengumuman': {
+      id: '/pengumuman'
+      path: '/pengumuman'
+      fullPath: '/pengumuman'
+      preLoaderRoute: typeof PengumumanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prestasi': {
+      id: '/prestasi'
+      path: '/prestasi'
+      fullPath: '/prestasi'
+      preLoaderRoute: typeof PrestasiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil-kelas': {
+      id: '/profil-kelas'
+      path: '/profil-kelas'
+      fullPath: '/profil-kelas'
+      preLoaderRoute: typeof ProfilKelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tugas-materi': {
+      id: '/tugas-materi'
+      path: '/tugas-materi'
+      fullPath: '/tugas-materi'
+      preLoaderRoute: typeof TugasMateriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wali-kelas': {
+      id: '/wali-kelas'
+      path: '/wali-kelas'
+      fullPath: '/wali-kelas'
+      preLoaderRoute: typeof WaliKelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgendaRoute: AgendaRoute,
+  DataSiswaRoute: DataSiswaRoute,
+  GaleriRoute: GaleriRoute,
+  InformasiSekolahRoute: InformasiSekolahRoute,
+  JadwalPelajaranRoute: JadwalPelajaranRoute,
+  JadwalPiketRoute: JadwalPiketRoute,
+  KontakRoute: KontakRoute,
+  PengumumanRoute: PengumumanRoute,
+  PrestasiRoute: PrestasiRoute,
+  ProfilKelasRoute: ProfilKelasRoute,
+  TugasMateriRoute: TugasMateriRoute,
+  WaliKelasRoute: WaliKelasRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
