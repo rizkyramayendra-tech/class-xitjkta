@@ -57,9 +57,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4">
           <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Beranda">
-            {site?.logo_url ? (
+            {site?['logo_url'] ? (
               <StorageImage
-                src={site.logo_url}
+                src={site['logo_url']}
                 alt="Logo kelas"
                 className="h-9 w-9 rounded-md object-cover"
               />
@@ -143,7 +143,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-10 md:grid-cols-3">
           <div>
             <p className="whitespace-pre-line font-display text-sm font-semibold">
-              {site?.footer_text ??
+              {site?['footer_text'] ??
                 "XI TJKT A\nSMKN 1 Gunung Talang\nTeknik Jaringan Komputer dan Telekomunikasi\nTahun Pembelajaran 2026–2027"}
             </p>
           </div>
@@ -161,12 +161,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </nav>
           <div className="text-sm text-muted-foreground">
             <p className="mb-2 font-semibold text-foreground">Portal Kelas</p>
-            <p>{site?.hero_description ?? "Portal resmi kelas XI TJKT A."}</p>
+            <p>{site?['hero_description'] ?? "Portal resmi kelas XI TJKT A."}</p>
           </div>
         </div>
         <div className="border-t border-border">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs text-muted-foreground sm:flex-row">
-            <p>{site?.footer_note ?? "© 2026 XI TJKT A. Seluruh hak cipta."}</p>
+            <p>{site?['footer_note'] ?? "© 2026 XI TJKT A. Seluruh hak cipta."}</p>
             <Link to="/admin/login" className="hover:text-foreground">
               Login Admin
             </Link>

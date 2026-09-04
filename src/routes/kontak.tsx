@@ -22,12 +22,12 @@ function Kontak() {
   const { data } = useSiteContent("contact");
 
   const items = [
-    { icon: MapPin, label: "Alamat", value: data?.address },
-    { icon: Mail, label: "Email", value: data?.email },
-    { icon: Phone, label: "Telepon", value: data?.phone },
-    { icon: MessageCircle, label: "WhatsApp", value: data?.whatsapp },
-    { icon: Instagram, label: "Instagram", value: data?.instagram },
-    { icon: Globe, label: "Website", value: data?.website },
+    { icon: MapPin, label: "Alamat", value: data?['address'] },
+    { icon: Mail, label: "Email", value: data?['email'] },
+    { icon: Phone, label: "Telepon", value: data?['phone'] },
+    { icon: MessageCircle, label: "WhatsApp", value: data?['whatsapp'] },
+    { icon: Instagram, label: "Instagram", value: data?['instagram'] },
+    { icon: Globe, label: "Website", value: data?['website'] },
   ];
 
   return (
@@ -46,15 +46,15 @@ function Kontak() {
               </li>
             ))}
           </ul>
-          {data?.note ? (
-            <p className="mt-4 text-sm text-muted-foreground">{data.note}</p>
+          {data?['note'] ? (
+            <p className="mt-4 text-sm text-muted-foreground">{data['note']}</p>
           ) : null}
         </div>
         <div className="panel overflow-hidden">
-          {data?.map_embed ? (
+          {data?['map_embed'] ? (
             <iframe
               title="Peta lokasi sekolah"
-              src={data.map_embed}
+              src={data['map_embed']}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-96 w-full border-0"
