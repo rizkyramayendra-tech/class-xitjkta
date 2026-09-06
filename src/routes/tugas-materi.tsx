@@ -64,8 +64,8 @@ function TugasMateri() {
         title="Tugas & Materi"
         description="Sumber belajar kelas: tugas, materi, modul, berkas, dan tautan pembelajaran."
       />
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
+         <div className="panel mb-8 flex flex-col gap-3 p-3 md:flex-row md:items-center md:justify-between">
           <Tabs value={tab} onValueChange={setTab}>
             <TabsList>
               <TabsTrigger value="semua">Semua</TabsTrigger>
@@ -98,9 +98,9 @@ function TugasMateri() {
         ) : !items.length ? (
           <EmptyState text="Belum ada tugas atau materi yang dipublikasikan." />
         ) : (
-          <ul className="grid gap-4 md:grid-cols-2">
+          <ul className="stagger-children grid gap-4 md:grid-cols-2">
             {items.map((item) => (
-              <li key={item.id} className="panel flex flex-col p-5">
+               <li key={item.id} className="panel panel-interactive flex flex-col p-5 sm:p-6">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <Badge variant="secondary" className="capitalize">
                     {item.type}
@@ -117,7 +117,7 @@ function TugasMateri() {
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {item.file_url ? (
-                    <Button size="sm" variant="outline" onClick={() => void openFile(item.file_url!)}>
+                     <Button size="sm" variant="outline" onClick={() => item.file_url && void openFile(item.file_url)}>
                       <Download className="mr-1.5 h-4 w-4" aria-hidden="true" /> Unduh berkas
                     </Button>
                   ) : null}

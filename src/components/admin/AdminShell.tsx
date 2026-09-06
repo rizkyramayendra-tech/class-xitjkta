@@ -77,9 +77,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
             {...linkProps}
             onClick={() => setOpen(false)}
             className={cn(
-              "flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+               "flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-all",
               active
-                ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                 ? "bg-sidebar-accent text-sidebar-accent-foreground shadow-sm"
                 : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
             )}
           >
@@ -88,20 +88,21 @@ export function AdminShell({ children }: { children: ReactNode }) {
           </Link>
         );
       })}
-      <button
+      <Button
         type="button"
+        variant="ghost"
         onClick={() => void signOut()}
-        className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium text-destructive hover:bg-destructive/10"
+        className="h-9 w-full justify-start gap-2.5 px-3 text-destructive hover:bg-destructive/10 hover:text-destructive"
       >
         <LogOut className="h-4 w-4" aria-hidden="true" />
         Logout
-      </button>
+      </Button>
     </nav>
   );
 
   return (
     <div className="min-h-screen bg-background lg:flex">
-      <aside className="hidden w-64 shrink-0 border-r border-sidebar-border bg-sidebar p-4 lg:block">
+      <aside className="hidden h-screen w-64 shrink-0 overflow-y-auto border-r border-sidebar-border bg-sidebar p-4 lg:sticky lg:top-0 lg:block">
         <Link to="/" className="mb-6 flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <Network className="h-5 w-5" aria-hidden="true" />
@@ -115,7 +116,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur lg:justify-end">
+        <header className="sticky top-0 z-30 grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-border bg-background/90 px-4 shadow-sm backdrop-blur-xl lg:flex lg:justify-end">
           <Button
             variant="outline"
             size="icon"
@@ -126,7 +127,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           >
             {open ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
           </Button>
-          <span className="font-display text-sm font-semibold lg:hidden">Dashboard Admin</span>
+           <span className="truncate font-display text-sm font-semibold lg:hidden">Dashboard Admin</span>
           <div className="ml-auto flex items-center gap-2">
             <Button variant="outline" size="sm" asChild>
               <Link to="/">Lihat Website</Link>
@@ -146,11 +147,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        {open ? (
-          <div className="border-b border-border bg-sidebar p-4 lg:hidden">{nav}</div>
-        ) : null}
+         <div className={cn("grid border-b border-border bg-sidebar transition-[grid-template-rows,opacity] duration-300 lg:hidden", open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0")}>
+           <div className="max-h-[calc(100vh-64px)] overflow-y-auto"><div className="p-4">{nav}</div></div>
+         </div>
 
-        <main className="min-w-0 flex-1 p-4 sm:p-6">{children}</main>
+         <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

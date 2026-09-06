@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { SiteLayout, PageHeader, EmptyState } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Select,
@@ -81,8 +82,8 @@ function DataSiswa() {
         title="Data Siswa"
         description="Direktori siswa kelas XI TJKT A. Klik kartu siswa untuk melihat detail."
       />
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
+        <div className="panel mb-8 flex flex-col gap-3 p-3 sm:flex-row">
           <div className="relative flex-1">
             <Search
               className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
@@ -127,27 +128,28 @@ function DataSiswa() {
         ) : students.length === 0 ? (
           <EmptyState text="Tidak ada siswa yang cocok dengan pencarian." />
         ) : (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="stagger-children grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {students.map((student) => (
               <li key={student.id}>
-                <button
+                <Button
                   type="button"
                   onClick={() => setSelected(student)}
-                  className="panel w-full overflow-hidden text-left transition-transform hover:-translate-y-0.5"
+                   variant="ghost"
+                   className="panel panel-interactive h-auto w-full flex-col items-stretch overflow-hidden p-0 text-left whitespace-normal"
                 >
                   <StorageImage
                     src={student.photo_url}
                     alt={`Foto ${student.name}`}
                     className="aspect-[4/5] w-full object-cover"
                   />
-                  <div className="p-4">
+                  <div className="w-full p-3 sm:p-4">
                     <p className="text-xs text-muted-foreground">No. {student.order_no}</p>
                     <p className="font-semibold">{student.name}</p>
                     {student.nickname ? (
                       <p className="text-xs text-muted-foreground">{student.nickname}</p>
                     ) : null}
                   </div>
-                </button>
+                </Button>
               </li>
             ))}
           </ul>
