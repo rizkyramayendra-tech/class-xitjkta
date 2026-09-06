@@ -147,7 +147,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-         <div className={cn("grid border-b border-border bg-sidebar transition-[grid-template-rows,opacity] duration-300 lg:hidden", open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0")}>
+         <div className={cn("overflow-hidden border-b border-border bg-sidebar transition-[max-height,opacity] duration-300 lg:hidden", open ? "max-h-[calc(100vh-64px)] opacity-100" : "pointer-events-none max-h-0 border-b-transparent opacity-0")}>
            <div className="max-h-[calc(100vh-64px)] overflow-y-auto"><div className="p-4">{nav}</div></div>
          </div>
 

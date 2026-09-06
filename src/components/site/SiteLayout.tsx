@@ -111,10 +111,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         <nav
-          className={cn("grid border-t border-border bg-background/95 transition-[grid-template-rows,opacity] duration-300 2xl:hidden", open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0")}
+          className={cn("overflow-hidden border-t border-border bg-background/95 transition-[max-height,opacity] duration-300 2xl:hidden", open ? "max-h-[calc(100vh-68px)] opacity-100" : "pointer-events-none max-h-0 border-t-transparent opacity-0")}
           aria-label="Navigasi seluler"
         >
-          <div className="overflow-hidden">
+          <div>
           <ul className="mx-auto grid max-h-[calc(100vh-68px)] max-w-7xl gap-1 overflow-y-auto px-4 py-4 sm:grid-cols-2">
             {NAV.map((item, index) => (
               <li key={item.to} style={{ transitionDelay: open ? `${Math.min(index * 20, 180)}ms` : "0ms" }} className={cn("transition-all duration-300", open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0")}>
