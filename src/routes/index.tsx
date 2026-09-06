@@ -101,7 +101,7 @@ function Beranda() {
           <span className="network-pulse absolute left-[36%] top-[72%] h-2.5 w-2.5 rounded-full bg-primary [animation-delay:700ms]" />
           <span className="network-pulse absolute right-[12%] top-[12%] h-2 w-2 rounded-full bg-primary [animation-delay:1400ms]" />
         </div>
-        <div className="relative mx-auto grid min-h-[calc(100svh-68px)] max-w-7xl content-center items-center gap-10 px-4 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:py-16 lg:grid-cols-[1.08fr_0.92fr] lg:py-24">
           <div className="reveal-up">
             <Badge variant="secondary" className="mb-4">
               {site?.['hero_year'] ?? "Tahun Pembelajaran 2026–2027"}

@@ -55,7 +55,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         Lewati ke konten
       </a>
       <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 shadow-sm backdrop-blur-xl">
-        <div className="mx-auto grid h-[68px] max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 xl:flex">
+        <div className="mx-auto grid h-[68px] max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 2xl:flex">
           <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Beranda">
             {site?.['logo_url'] ? (
               <StorageImage
@@ -76,7 +76,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="ml-auto hidden items-center gap-0.5 xl:flex" aria-label="Navigasi utama">
+          <nav className="ml-auto hidden items-center gap-0.5 2xl:flex" aria-label="Navigasi utama">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -90,13 +90,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-2 xl:ml-2">
+          <div className="flex shrink-0 items-center gap-2 2xl:ml-2">
             <GlobalSearch />
             <ThemeToggle />
             <Button
               variant="outline"
               size="icon"
-              className="xl:hidden"
+               className="2xl:hidden"
               aria-expanded={open}
               aria-label={open ? "Tutup menu" : "Buka menu"}
               onClick={() => setOpen((o) => !o)}
@@ -111,7 +111,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         <nav
-          className={cn("grid border-t border-border bg-background/95 transition-[grid-template-rows,opacity] duration-300 xl:hidden", open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0")}
+          className={cn("grid border-t border-border bg-background/95 transition-[grid-template-rows,opacity] duration-300 2xl:hidden", open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0")}
           aria-label="Navigasi seluler"
         >
           <div className="overflow-hidden">
