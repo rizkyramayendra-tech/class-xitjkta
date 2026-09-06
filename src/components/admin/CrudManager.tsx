@@ -160,11 +160,12 @@ export function CrudManager({ config }: { config: CrudConfig }) {
   }
 
   return (
-    <div>
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mx-auto max-w-[1440px]">
+      <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold">{config.title}</h1>
-          <p className="text-sm text-muted-foreground">{config.description}</p>
+          <span className="mb-3 block h-1 w-9 rounded-full bg-primary" aria-hidden="true" />
+          <h1 className="font-display text-2xl font-bold sm:text-3xl">{config.title}</h1>
+          <p className="mt-1 max-w-2xl text-sm text-muted-foreground">{config.description}</p>
         </div>
         <div className="flex gap-2">
           <Input
@@ -193,7 +194,7 @@ export function CrudManager({ config }: { config: CrudConfig }) {
       ) : (
         <div className="panel overflow-x-auto">
           <table className="w-full min-w-[600px] text-sm">
-            <thead className="bg-secondary text-left">
+             <thead className="bg-secondary/80 text-left">
               <tr>
                 {config.columns.map((col) => (
                   <th key={col.name} scope="col" className="p-3 font-semibold">
@@ -207,7 +208,7 @@ export function CrudManager({ config }: { config: CrudConfig }) {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={String(row['id'])} className="border-t border-border align-top">
+                 <tr key={String(row['id'])} className="border-t border-border align-top transition-colors hover:bg-secondary/40">
                   {config.columns.map((col) => (
                     <td key={col.name} className="max-w-[280px] p-3">
                       {col.name === "status" ? (

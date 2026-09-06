@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Moon, Sun, Network, X } from "lucide-react";
+import { Menu, Moon, Sun, Network, X, CircleDot, Inbox } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "@/components/site/GlobalSearch";
 import { StorageImage } from "@/components/StorageImage";
@@ -54,8 +54,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       >
         Lewati ke konten
       </a>
-      <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4">
+      <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 shadow-sm backdrop-blur-xl">
+        <div className="mx-auto grid h-[68px] max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 2xl:flex">
           <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Beranda">
             {site?.['logo_url'] ? (
               <StorageImage
@@ -64,39 +64,39 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 className="h-9 w-9 rounded-md object-cover"
               />
             ) : (
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-sm">
                 <Network className="h-5 w-5" aria-hidden="true" />
               </span>
             )}
-            <span className="leading-tight">
-              <span className="block font-display text-sm font-bold">XI TJKT A</span>
+            <span className="min-w-0 leading-tight">
+              <span className="block truncate font-display text-sm font-bold">XI TJKT A</span>
               <span className="block text-[11px] text-muted-foreground">
                 SMKN 1 Gunung Talang
               </span>
             </span>
           </Link>
 
-          <nav className="ml-auto hidden items-center gap-0.5 xl:flex" aria-label="Navigasi utama">
+          <nav className="ml-auto hidden items-center gap-0.5 2xl:flex" aria-label="Navigasi utama">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                className="rounded-md px-2.5 py-2 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                activeProps={{ className: "bg-secondary text-foreground" }}
+                className="relative rounded-md px-2 py-2 text-xs font-medium text-muted-foreground transition-colors after:absolute after:inset-x-2 after:-bottom-[14px] after:h-0.5 after:origin-center after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground"
+                activeProps={{ className: "text-foreground after:scale-x-100" }}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2 xl:ml-2">
+          <div className="flex shrink-0 items-center gap-2 2xl:ml-2">
             <GlobalSearch />
             <ThemeToggle />
             <Button
               variant="outline"
               size="icon"
-              className="xl:hidden"
+               className="2xl:hidden"
               aria-expanded={open}
               aria-label={open ? "Tutup menu" : "Buka menu"}
               onClick={() => setOpen((o) => !o)}
@@ -111,27 +111,27 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         <nav
-          className={cn(
-            "overflow-hidden border-t border-border bg-background xl:hidden",
-            open ? "block" : "hidden",
-          )}
+          className={cn("overflow-hidden border-t border-border bg-background/95 transition-[max-height,opacity] duration-300 2xl:hidden", open ? "max-h-[calc(100vh-68px)] opacity-100" : "pointer-events-none max-h-0 border-t-transparent opacity-0")}
           aria-label="Navigasi seluler"
         >
-          <ul className="mx-auto grid max-w-7xl gap-1 px-4 py-3 sm:grid-cols-2">
-            {NAV.map((item) => (
-              <li key={item.to}>
+          <div>
+          <ul className="mx-auto grid max-h-[calc(100vh-68px)] max-w-7xl gap-1 overflow-y-auto px-4 py-4 sm:grid-cols-2">
+            {NAV.map((item, index) => (
+              <li key={item.to} style={{ transitionDelay: open ? `${Math.min(index * 20, 180)}ms` : "0ms" }} className={cn("transition-all duration-300", open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0")}>
                 <Link
                   to={item.to}
                   onClick={() => setOpen(false)}
                   activeOptions={{ exact: item.to === "/" }}
-                  className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
-                  activeProps={{ className: "bg-secondary text-foreground" }}
+                   className="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary hover:text-foreground"
+                   activeProps={{ className: "bg-secondary text-foreground" }}
                 >
+                  <CircleDot className="h-3 w-3 text-primary" aria-hidden="true" />
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
+          </div>
         </nav>
       </header>
 
@@ -179,9 +179,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
 export function PageHeader({ title, description }: { title: string; description?: string }) {
   return (
-    <div className="border-b border-border bg-surface">
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <h1 className="font-display text-3xl font-bold sm:text-4xl">{title}</h1>
+    <div className="relative overflow-hidden border-b border-border bg-surface">
+      <div className="pointer-events-none absolute inset-0 grid-tech opacity-30" aria-hidden="true" />
+      <div className="relative mx-auto max-w-7xl px-4 py-10 sm:py-12">
+        <span className="mb-3 block h-1 w-10 rounded-full bg-primary" aria-hidden="true" />
+        <h1 className="reveal-up font-display text-3xl font-bold sm:text-4xl">{title}</h1>
         {description ? (
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">{description}</p>
         ) : null}
@@ -192,6 +194,9 @@ export function PageHeader({ title, description }: { title: string; description?
 
 export function EmptyState({ text }: { text: string }) {
   return (
-    <div className="panel p-10 text-center text-sm text-muted-foreground">{text}</div>
+    <div className="panel flex min-h-44 flex-col items-center justify-center p-10 text-center text-sm text-muted-foreground">
+      <span className="mb-3 grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary"><Inbox className="h-5 w-5" aria-hidden="true" /></span>
+      {text}
+    </div>
   );
 }

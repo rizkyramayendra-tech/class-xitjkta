@@ -37,7 +37,7 @@ function Pengumuman() {
   return (
     <SiteLayout>
       <PageHeader title="Pengumuman" description="Informasi penting dari wali kelas dan pengurus kelas." />
-      <div className="mx-auto max-w-4xl px-4 py-10">
+       <div className="mx-auto max-w-4xl px-4 py-10 sm:py-14">
         {isLoading ? (
           <div className="space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -47,9 +47,9 @@ function Pengumuman() {
         ) : !items.length ? (
           <EmptyState text="Belum ada pengumuman." />
         ) : (
-          <ul className="space-y-5">
+           <ul className="stagger-children space-y-5">
             {items.map((item) => (
-              <li key={item.id} className="panel overflow-hidden">
+               <li key={item.id} className="panel panel-interactive overflow-hidden">
                 {item.image_url ? (
                   <StorageImage
                     src={item.image_url}
@@ -57,7 +57,7 @@ function Pengumuman() {
                     className="aspect-[21/9] w-full object-cover"
                   />
                 ) : null}
-                <article className="p-5">
+                 <article className="p-5 sm:p-6">
                   <div className="mb-2 flex flex-wrap items-center gap-2">
                     {item.pinned ? (
                       <Badge>
@@ -67,7 +67,7 @@ function Pengumuman() {
                     <span className="text-xs text-muted-foreground">{formatDate(item.date)}</span>
                   </div>
                   <h2 className="font-display text-xl font-semibold">{item.title}</h2>
-                  <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                   <p className="mt-2 break-words whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                     {item.content}
                   </p>
                 </article>

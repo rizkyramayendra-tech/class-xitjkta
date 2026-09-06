@@ -37,7 +37,7 @@ function Prestasi() {
   return (
     <SiteLayout>
       <PageHeader title="Prestasi" description="Capaian membanggakan siswa kelas XI TJKT A." />
-      <div className="mx-auto max-w-7xl px-4 py-10">
+       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
         {isLoading ? (
           <div className="grid gap-4 md:grid-cols-3">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -47,9 +47,9 @@ function Prestasi() {
         ) : !data?.length ? (
           <EmptyState text="Belum ada prestasi yang tercatat." />
         ) : (
-          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+           <ul className="stagger-children grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
             {data.map((item) => (
-              <li key={item.id} className="panel overflow-hidden">
+               <li key={item.id} className="panel panel-interactive h-full overflow-hidden">
                 <StorageImage
                   src={item.image_url}
                   alt={`Dokumentasi prestasi ${item.title}`}

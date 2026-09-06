@@ -33,13 +33,13 @@ function Kontak() {
   return (
     <SiteLayout>
       <PageHeader title="Kontak" description="Informasi kontak resmi kelas XI TJKT A." />
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
+       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2 lg:py-16">
         <div>
           <ul className="panel divide-y divide-border">
             {items.map((item) => (
-              <li key={item.label} className="flex items-start gap-3 p-4">
-                <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                <div>
+               <li key={item.label} className="flex items-start gap-4 p-4 transition-colors hover:bg-secondary/50">
+                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><item.icon className="h-4 w-4" aria-hidden="true" /></span>
+                 <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">{item.label}</p>
                   <p className="break-words font-medium">{item.value || "-"}</p>
                 </div>
@@ -60,7 +60,7 @@ function Kontak() {
               className="h-96 w-full border-0"
             />
           ) : (
-            <div className="flex h-96 items-center justify-center text-sm text-muted-foreground">
+             <div className="grid h-80 place-items-center text-sm text-muted-foreground sm:h-96">
               Peta belum tersedia.
             </div>
           )}

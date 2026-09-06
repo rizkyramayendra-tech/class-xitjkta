@@ -24,12 +24,12 @@ function WaliKelas() {
   return (
     <SiteLayout>
       <PageHeader title="Wali Kelas" description="Pembimbing dan penanggung jawab kelas XI TJKT A." />
-      <div className="mx-auto max-w-5xl px-4 py-12">
-        <div className="panel grid gap-8 p-6 md:grid-cols-[240px_1fr] md:p-8">
+       <div className="mx-auto max-w-5xl px-4 py-12 lg:py-16">
+         <div className="panel grid gap-8 p-5 sm:p-6 md:grid-cols-[240px_minmax(0,1fr)] md:p-8">
           <StorageImage
             src={data?.['photo_url']}
             alt={`Foto ${data?.['name'] ?? "wali kelas"}`}
-            className="aspect-[3/4] w-full rounded-xl border border-border object-cover"
+             className="mx-auto aspect-[3/4] max-h-[420px] w-full max-w-xs rounded-lg border border-border object-cover shadow-panel md:max-h-none"
           />
           <div>
             <h2 className="font-display text-2xl font-bold">{data?.['name'] || "-"}</h2>

@@ -8,6 +8,8 @@ import {
   Users,
   BookOpen,
   Images,
+  RadioTower,
+  Wifi,
 } from "lucide-react";
 import heroImage from "@/assets/hero-network.jpg";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -44,7 +46,7 @@ type GalleryItem = { id: string; title: string; image_url: string; caption: stri
 
 function SectionTitle({ title, to, icon: Icon }: { title: string; to: string; icon: typeof Users }) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-3">
+    <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
       <h2 className="flex items-center gap-2 font-display text-lg font-semibold">
         <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
         {title}
@@ -93,19 +95,25 @@ function Beranda() {
   return (
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border bg-surface">
-        <div className="pointer-events-none absolute inset-0 grid-tech opacity-40" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-2 lg:py-20">
-          <div>
+        <div className="pointer-events-none absolute inset-0 grid-tech opacity-35" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <span className="network-pulse absolute left-[8%] top-[18%] h-2 w-2 rounded-full bg-primary" />
+          <span className="network-pulse absolute left-[36%] top-[72%] h-2.5 w-2.5 rounded-full bg-primary [animation-delay:700ms]" />
+          <span className="network-pulse absolute right-[12%] top-[12%] h-2 w-2 rounded-full bg-primary [animation-delay:1400ms]" />
+        </div>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:py-16 lg:grid-cols-[1.08fr_0.92fr] lg:py-24">
+          <div className="reveal-up">
             <Badge variant="secondary" className="mb-4">
               {site?.['hero_year'] ?? "Tahun Pembelajaran 2026–2027"}
             </Badge>
-            <h1 className="font-display text-4xl font-bold sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-3xl font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
               {site?.['hero_title'] ?? "XI TJKT A"}
             </h1>
-            <p className="mt-3 text-lg font-medium text-primary">
+            <p className="mt-5 flex items-center gap-2 text-base font-semibold text-primary sm:text-lg">
+              <RadioTower className="h-5 w-5 shrink-0" aria-hidden="true" />
               {site?.['hero_subtitle'] ?? "Teknik Jaringan Komputer dan Telekomunikasi"}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="mt-1 text-sm font-medium text-muted-foreground">
               {site?.['hero_school'] ?? "SMKN 1 Gunung Talang"}
             </p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -120,13 +128,14 @@ function Beranda() {
               </Button>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative reveal-up [animation-delay:120ms]">
+            <div className="absolute -inset-3 rounded-2xl border border-primary/15" aria-hidden="true" />
             {site?.['hero_image_url'] ? (
               <StorageImage
                 src={site['hero_image_url']}
                 alt="Foto utama kelas XI TJKT A"
                 loading="eager"
-                className="aspect-[16/10] w-full rounded-2xl border border-border object-cover shadow-panel"
+                className="aspect-[16/10] w-full rounded-xl border border-border object-cover shadow-panel"
               />
             ) : (
               <img
@@ -134,17 +143,21 @@ function Beranda() {
                 alt="Rak server dan panel jaringan di laboratorium TJKT"
                 width={1600}
                 height={1000}
-                className="aspect-[16/10] w-full rounded-2xl border border-border object-cover shadow-panel"
+                className="aspect-[16/10] w-full rounded-xl border border-border object-cover shadow-panel"
               />
             )}
+            <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-md border border-border bg-background/90 px-3 py-2 text-xs font-semibold shadow-panel backdrop-blur">
+              <Wifi className="h-4 w-4 text-primary" aria-hidden="true" />
+              Teknik Jaringan Komputer dan Telekomunikasi
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border px-0 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="bg-background p-6 text-center">
+      <section className="border-b border-border bg-background">
+        <div className="stagger-children mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div key={stat.label} className={`border-border bg-background p-5 text-center sm:p-7 ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b lg:border-b-0" : ""} lg:border-r lg:last:border-r-0`}>
               <stat.icon className="mx-auto mb-2 h-5 w-5 text-primary" aria-hidden="true" />
               <p className="font-display text-2xl font-bold">{stat.value}</p>
               <p className="text-xs text-muted-foreground sm:text-sm">{stat.label}</p>
@@ -153,7 +166,7 @@ function Beranda() {
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-2">
+      <div className="stagger-children mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-2 lg:py-20">
         <section aria-labelledby="pengumuman-terbaru">
           <SectionTitle title="Pengumuman Terbaru" to="/pengumuman" icon={Megaphone} />
           {announcements.isLoading ? (
@@ -161,7 +174,7 @@ function Beranda() {
           ) : announcements.data?.length ? (
             <ul className="space-y-3">
               {announcements.data.map((item) => (
-                <li key={item.id} className="panel p-4">
+                 <li key={item.id} className="panel panel-interactive p-4">
                   <p className="font-semibold">{item.title}</p>
                   <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{item.content}</p>
                   <p className="mt-2 text-xs text-muted-foreground">{formatDate(item.date)}</p>
@@ -180,7 +193,7 @@ function Beranda() {
           ) : events.data?.length ? (
             <ul className="space-y-3">
               {events.data.map((item) => (
-                <li key={item.id} className="panel p-4">
+                 <li key={item.id} className="panel panel-interactive p-4">
                   <p className="font-semibold">{item.title}</p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {formatDate(item.date)} · {item.location ?? "-"}
@@ -198,7 +211,7 @@ function Beranda() {
           {tugasOnly.length ? (
             <ul className="space-y-3">
               {tugasOnly.map((item) => (
-                <li key={item.id} className="panel p-4">
+                 <li key={item.id} className="panel panel-interactive p-4">
                   <p className="font-semibold">{item.title}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.subject ?? "-"}</p>
                 </li>
@@ -214,7 +227,7 @@ function Beranda() {
           {materi.length ? (
             <ul className="space-y-3">
               {materi.map((item) => (
-                <li key={item.id} className="panel p-4">
+                 <li key={item.id} className="panel panel-interactive p-4">
                   <p className="font-semibold">{item.title}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{item.subject ?? "-"}</p>
                 </li>
@@ -230,7 +243,7 @@ function Beranda() {
           {prestasi.data?.length ? (
             <ul className="space-y-3">
               {prestasi.data.map((item) => (
-                <li key={item.id} className="panel p-4">
+                 <li key={item.id} className="panel panel-interactive p-4">
                   <p className="font-semibold">{item.title}</p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {[item.category, item.year].filter(Boolean).join(" · ") || "-"}
@@ -246,13 +259,13 @@ function Beranda() {
         <section aria-labelledby="galeri-terbaru">
           <SectionTitle title="Galeri Terbaru" to="/galeri" icon={Images} />
           {galeri.data?.length ? (
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {galeri.data.map((item) => (
                 <StorageImage
                   key={item.id}
                   src={item.image_url}
                   alt={item.caption ?? item.title}
-                  className="aspect-square w-full rounded-lg border border-border object-cover"
+                  className="aspect-square w-full rounded-lg border border-border object-cover shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-panel"
                 />
               ))}
             </div>

@@ -36,7 +36,7 @@ function Agenda() {
   return (
     <SiteLayout>
       <PageHeader title="Agenda" description="Kegiatan dan acara yang akan dan telah dilaksanakan kelas." />
-      <div className="mx-auto max-w-5xl px-4 py-10">
+       <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
         {isLoading ? (
           <div className="space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -46,15 +46,15 @@ function Agenda() {
         ) : !data?.length ? (
           <EmptyState text="Belum ada agenda kegiatan." />
         ) : (
-          <ol className="space-y-4">
+           <ol className="stagger-children space-y-4">
             {data.map((item) => (
-              <li key={item.id} className="panel grid gap-4 p-5 sm:grid-cols-[160px_1fr]">
+               <li key={item.id} className="panel panel-interactive grid gap-5 p-5 sm:grid-cols-[160px_minmax(0,1fr)] sm:p-6">
                 <StorageImage
                   src={item.image_url}
                   alt={`Foto kegiatan ${item.title}`}
                   className="aspect-video w-full rounded-lg border border-border object-cover"
                 />
-                <div>
+                 <div className="min-w-0">
                   <h2 className="font-display text-lg font-semibold">{item.title}</h2>
                   <div className="mt-2 flex flex-wrap gap-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
@@ -71,7 +71,7 @@ function Agenda() {
                       </span>
                     ) : null}
                   </div>
-                  <p className="mt-3 whitespace-pre-line text-sm text-muted-foreground">
+                   <p className="mt-3 break-words whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
                 </div>
