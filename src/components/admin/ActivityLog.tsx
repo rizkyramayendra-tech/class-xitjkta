@@ -19,9 +19,10 @@ export function ActivityLog() {
   });
 
   return (
-    <div>
+     <div className="mx-auto max-w-[1200px]">
       <div className="mb-6">
-        <h1 className="font-display text-2xl font-bold">Riwayat Aktivitas</h1>
+         <span className="mb-3 block h-1 w-9 rounded-full bg-primary" aria-hidden="true" />
+         <h1 className="font-display text-2xl font-bold sm:text-3xl">Riwayat Aktivitas</h1>
         <p className="text-sm text-muted-foreground">100 aktivitas administrator terakhir.</p>
       </div>
       {isLoading ? (
@@ -33,9 +34,9 @@ export function ActivityLog() {
       ) : (data ?? []).length === 0 ? (
         <p className="panel p-10 text-center text-sm text-muted-foreground">Belum ada aktivitas.</p>
       ) : (
-        <ul className="panel divide-y divide-border">
+         <ul className="panel divide-y divide-border overflow-hidden">
           {(data ?? []).map((log) => (
-            <li key={log.id} className="flex flex-wrap items-center gap-3 p-3 text-sm">
+             <li key={log.id} className="flex flex-wrap items-center gap-3 p-4 text-sm transition-colors hover:bg-secondary/40">
               <Badge variant="secondary">{log.action}</Badge>
               <span className="font-medium">{log.entity ?? "-"}</span>
               <span className="text-muted-foreground">{log.detail ?? ""}</span>

@@ -34,9 +34,9 @@ function JadwalPiket() {
         title="Jadwal Piket"
         description="Petugas piket kebersihan kelas XI TJKT A setiap harinya."
       />
-      <div className="mx-auto max-w-7xl px-4 py-10">
+       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
         {isLoading ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+           <div className="stagger-children grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 5 }).map((_, i) => (
               <Skeleton key={i} className="h-64 w-full" />
             ))}
@@ -49,7 +49,7 @@ function JadwalPiket() {
               const rows = data.filter((r) => r.day === day);
               if (!rows.length) return null;
               return (
-                <section key={day} className="panel p-5">
+                 <section key={day} className="panel panel-interactive p-5">
                   <h2 className="mb-3 flex items-center justify-between font-display text-lg font-semibold">
                     {day}
                     <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
@@ -58,7 +58,7 @@ function JadwalPiket() {
                   </h2>
                   <ol className="space-y-1.5 text-sm">
                     {rows.map((row, index) => (
-                      <li key={row.id} className="flex items-center gap-3 rounded-md bg-secondary/60 px-3 py-2">
+                       <li key={row.id} className="flex items-center gap-3 rounded-md border border-transparent bg-secondary/60 px-3 py-2 transition-colors hover:border-border hover:bg-secondary">
                         <span className="font-mono text-xs text-muted-foreground">{index + 1}</span>
                         <span className="font-medium">{row.member_name}</span>
                       </li>

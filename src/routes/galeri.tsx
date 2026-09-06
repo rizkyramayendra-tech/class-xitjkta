@@ -5,6 +5,7 @@ import { SiteLayout, PageHeader, EmptyState } from "@/components/site/SiteLayout
 import { StorageImage } from "@/components/StorageImage";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { formatDate, useTable } from "@/lib/cms";
@@ -62,19 +63,21 @@ function Galeri() {
   return (
     <SiteLayout>
       <PageHeader title="Galeri" description="Momen dan dokumentasi kegiatan kelas XI TJKT A." />
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-14">
+         <div className="panel mb-8 flex flex-col gap-3 p-3 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
-              <button
+              <Button
                 key={cat}
                 type="button"
                 onClick={() => setCategory(cat)}
                 aria-pressed={category === cat}
-                className="rounded-full border border-border px-3 py-1 text-xs font-medium transition-colors aria-pressed:bg-primary aria-pressed:text-primary-foreground"
+                 size="sm"
+                 variant={category === cat ? "default" : "outline"}
+                 className="h-8 rounded-full px-3 text-xs"
               >
                 {cat}
-              </button>
+              </Button>
             ))}
           </div>
           <div className="relative md:w-72">
@@ -101,12 +104,13 @@ function Galeri() {
         ) : !items.length ? (
           <EmptyState text="Belum ada foto pada galeri." />
         ) : (
-          <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+           <ul className="stagger-children grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {items.map((item) => (
               <li key={item.id}>
-                <button
+                 <Button
                   type="button"
-                  className="group block w-full overflow-hidden rounded-xl border border-border"
+                   variant="ghost"
+                   className="panel panel-interactive group block h-auto w-full overflow-hidden p-0"
                   onClick={() => setActive(item)}
                   aria-label={`Perbesar foto ${item.title}`}
                 >
@@ -115,7 +119,7 @@ function Galeri() {
                     alt={item.caption ?? item.title}
                     className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                </button>
+                 </Button>
               </li>
             ))}
           </ul>
@@ -136,7 +140,7 @@ function Galeri() {
             {active?.category ? <Badge variant="secondary">{active.category}</Badge> : null}
             <span>{formatDate(active?.date)}</span>
           </div>
-          {active?.caption ? <p className="text-sm">{active.caption}</p> : null}
+           {active?.caption ? <p className="break-words text-sm">{active.caption}</p> : null}
         </DialogContent>
       </Dialog>
     </SiteLayout>

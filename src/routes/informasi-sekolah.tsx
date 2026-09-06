@@ -35,9 +35,9 @@ function InformasiSekolah() {
   return (
     <SiteLayout>
       <PageHeader title="Informasi Sekolah" description="Profil singkat dan data resmi sekolah." />
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-3">
+       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-3 lg:py-16">
         <div className="lg:col-span-2">
-          <section className="panel p-6">
+           <section className="panel panel-interactive p-6">
             <div className="flex items-center gap-4">
               <StorageImage
                 src={data?.['logo_url']}
@@ -54,7 +54,7 @@ function InformasiSekolah() {
             </p>
           </section>
 
-          <section className="panel mt-6 p-6">
+           <section className="panel panel-interactive mt-6 p-6">
             <h2 className="font-display text-lg font-semibold">Program Keahlian</h2>
             <p className="mt-2 whitespace-pre-line text-sm text-muted-foreground">
               {data?.['majors'] || "-"}
@@ -74,7 +74,7 @@ function InformasiSekolah() {
           <StorageImage
             src={data?.['photo_url']}
             alt="Foto gedung SMKN 1 Gunung Talang"
-            className="aspect-[4/3] w-full rounded-xl border border-border object-cover"
+           className="aspect-[4/3] w-full rounded-lg border border-border object-cover shadow-panel lg:sticky lg:top-24"
           />
         </aside>
       </div>

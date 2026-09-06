@@ -45,21 +45,21 @@ function ProfilKelas() {
         title="Profil Kelas"
         description="Identitas resmi dan arah pengembangan kelas XI TJKT A."
       />
-      <div className="mx-auto max-w-7xl px-4 py-12">
+       <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16">
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <dl className="panel divide-y divide-border">
               {identity.map(([label, value]) => (
                 <div key={label} className="grid gap-1 p-4 sm:grid-cols-3">
                   <dt className="text-sm text-muted-foreground">{label}</dt>
-                  <dd className="font-medium sm:col-span-2">{value || "-"}</dd>
+                   <dd className="break-words font-medium sm:col-span-2">{value || "-"}</dd>
                 </div>
               ))}
             </dl>
 
             <div className="mt-8 space-y-6">
               {blocks.map(([title, value]) => (
-                <section key={title} className="panel p-6">
+                 <section key={title} className="panel panel-interactive p-6">
                   <h2 className="font-display text-lg font-semibold">{title}</h2>
                   <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                     {value || "Belum diisi."}
@@ -72,7 +72,7 @@ function ProfilKelas() {
             <StorageImage
               src={data?.['image_url']}
               alt="Foto kelas XI TJKT A"
-              className="aspect-[4/3] w-full rounded-xl border border-border object-cover"
+               className="aspect-[4/3] w-full rounded-lg border border-border object-cover shadow-panel lg:sticky lg:top-24"
             />
           </aside>
         </div>
