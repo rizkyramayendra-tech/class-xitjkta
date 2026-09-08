@@ -144,9 +144,6 @@ function Beranda() {
     { value: profile?.['year'] ?? "2026–2027", label: "Tahun Pembelajaran", icon: CalendarDays },
   ];
 
-  const materi = (tugas.data ?? []).filter((r) => r.type !== "tugas");
-  const tugasOnly = (tugas.data ?? []).filter((r) => r.type === "tugas");
-
   return (
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border bg-surface">
