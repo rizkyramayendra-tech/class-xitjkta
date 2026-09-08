@@ -39,6 +39,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Informasi jadwal, tugas, agenda, prestasi, dan galeri kelas XI TJKT A.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Beranda,
