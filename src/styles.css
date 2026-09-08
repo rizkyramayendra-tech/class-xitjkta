@@ -203,6 +203,20 @@
   50% { opacity: 1; transform: scale(1.15); }
 }
 
+@keyframes network-flow {
+  to { stroke-dashoffset: -36; }
+}
+
+@utility network-lines {
+  & path {
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 7 7;
+    animation: network-flow 5s linear infinite;
+  }
+}
+
 @utility network-pulse {
   animation: network-pulse 3s ease-in-out infinite;
 }
