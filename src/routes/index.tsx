@@ -20,11 +20,10 @@ import {
   Server,
   ShieldCheck,
   Sparkles,
-  UserRoundCheck,
   RadioTower,
   Wifi,
 } from "lucide-react";
-import { EmptyState, SiteLayout } from "@/components/site/SiteLayout";
+import { SiteLayout } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
