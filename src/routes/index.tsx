@@ -7,7 +7,6 @@ import {
   ChevronRight,
   ClipboardList,
   Clock3,
-  GraduationCap,
   Inbox,
   LaptopMinimal,
   Megaphone,
@@ -107,7 +106,7 @@ function HomeEmptyState({ title, description }: { title: string; description: st
 
 const quickLinks = [
   { to: "/data-siswa", title: "Data Siswa", description: "Informasi anggota kelas XI TJKT A.", icon: Users },
-  { to: "/jadwal-pelajaran", title: "Jadwal Pelajaran", description: "Susunan 17 mata pelajaran kelas.", icon: CalendarDays },
+  { to: "/jadwal-pelajaran", title: "Jadwal Pelajaran", description: "Susunan 16 mata pelajaran kelas.", icon: CalendarDays },
   { to: "/tugas-materi", title: "Tugas & Materi", description: "Akses tugas dan bahan pembelajaran.", icon: BookOpen },
   { to: "/pengumuman", title: "Pengumuman", description: "Informasi terbaru untuk seluruh kelas.", icon: Megaphone },
   { to: "/agenda", title: "Agenda", description: "Jadwal kegiatan dan agenda kelas.", icon: ClipboardList },
@@ -189,10 +188,10 @@ function Beranda() {
   const supportingQuickLinks = quickLinks.filter((item) => item.to !== "/jadwal-pelajaran");
 
   const stats = [
-    { value: profile?.['student_count'] ?? "34", label: "Siswa", icon: Users },
-    { value: "1", label: "Wali Kelas", icon: GraduationCap },
-    { value: "17", label: "Mata Pelajaran", icon: BookOpen },
-    { value: profile?.['year'] ?? "2026–2027", label: "Tahun Pembelajaran", icon: CalendarDays },
+    { value: "34", label: "Siswa", icon: Users },
+    { value: "16", label: "Mata Pelajaran", icon: BookOpen },
+    { value: "2", label: "Kegiatan", icon: ClipboardList },
+    { value: "2026–2027", label: "Tahun Pembelajaran", icon: CalendarDays },
   ];
 
   return (
@@ -241,7 +240,7 @@ function Beranda() {
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><stat.icon className="h-4 w-4" aria-hidden="true" /></span>
               <span className="min-w-0">
                 <span className="block font-display text-lg font-bold leading-tight sm:text-xl">{stat.value}</span>
-                <span className="block truncate text-[11px] text-muted-foreground sm:text-xs">{stat.label}</span>
+                <span className="block text-[11px] leading-tight text-muted-foreground sm:text-xs">{stat.label}</span>
               </span>
             </div>
           ))}
