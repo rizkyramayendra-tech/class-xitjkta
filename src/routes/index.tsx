@@ -172,7 +172,6 @@ function useJakartaToday() {
 
 function Beranda() {
   const { data: site } = useSiteContent("site");
-  const { data: profile } = useSiteContent("class_profile");
   const announcements = useTable<Announcement>("announcements", {
     orderBy: "date",
     limit: 3,
