@@ -152,6 +152,7 @@ export const SUBJECTS = [
   "PKPJ",
   "PJOK",
   "Matematika",
+  "BK",
   "Gr.W",
   "Ekskul",
 ];
