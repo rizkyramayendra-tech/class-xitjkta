@@ -206,7 +206,11 @@ function Beranda() {
             </Badge>
             <h1 className="max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl">
               {site?.['hero_title'] ?? "XI TJKT A"}
+              <span className="mt-1 block text-xl font-semibold text-muted-foreground sm:text-2xl">
+                Portal Kelas SMKN 1 Gunung Talang
+              </span>
             </h1>
+
             <p className="mt-2 text-base font-semibold leading-snug text-primary sm:text-lg">
               {site?.['hero_subtitle'] ?? "Teknik Jaringan Komputer dan Telekomunikasi"}
             </p>
