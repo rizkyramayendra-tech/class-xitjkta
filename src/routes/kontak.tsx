@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Globe, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
+import { RichText } from "@/components/ui/rich-text";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/kontak")({
@@ -42,13 +43,17 @@ function Kontak() {
                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><item.icon className="h-4 w-4" aria-hidden="true" /></span>
                  <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">{item.label}</p>
-                  <p className="break-words font-medium">{item.value || "-"}</p>
+                  <p className="break-words font-medium">
+                    {item.value ? <RichText text={item.value} /> : "-"}
+                  </p>
                 </div>
               </li>
             ))}
           </ul>
           {data?.['note'] ? (
-            <p className="mt-4 text-sm text-muted-foreground">{data['note']}</p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              <RichText text={data['note']} />
+            </p>
           ) : null}
         </div>
         <div className="panel overflow-hidden">
