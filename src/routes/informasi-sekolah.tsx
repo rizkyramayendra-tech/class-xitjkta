@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
+import { RichText } from "@/components/ui/rich-text";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/informasi-sekolah")({
@@ -66,7 +67,9 @@ function InformasiSekolah() {
             {rows.map(([label, value]) => (
               <div key={label} className="grid gap-1 p-4 sm:grid-cols-3">
                 <dt className="text-sm text-muted-foreground">{label}</dt>
-                <dd className="break-words font-medium sm:col-span-2">{value || "-"}</dd>
+                <dd className="break-words font-medium sm:col-span-2">
+                  {value ? <RichText text={value} /> : "-"}
+                </dd>
               </div>
             ))}
           </dl>
