@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RichText } from "@/components/ui/rich-text";
 import { formatDate, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/galeri")({
@@ -141,7 +142,11 @@ function Galeri() {
             {active?.category ? <Badge variant="secondary">{active.category}</Badge> : null}
             <span>{formatDate(active?.date)}</span>
           </div>
-           {active?.caption ? <p className="break-words text-sm">{active.caption}</p> : null}
+           {active?.caption ? (
+             <p className="break-words text-sm">
+               <RichText text={active.caption} />
+             </p>
+           ) : null}
         </DialogContent>
       </Dialog>
     </SiteLayout>
