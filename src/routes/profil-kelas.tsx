@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
+import { RichText } from "@/components/ui/rich-text";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/profil-kelas")({
@@ -63,7 +64,7 @@ function ProfilKelas() {
                  <section key={title} className="panel panel-interactive p-6">
                   <h2 className="font-display text-lg font-semibold">{title}</h2>
                   <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                    {value || "Belum diisi."}
+                    {value ? <RichText text={value} /> : "Belum diisi."}
                   </p>
                 </section>
               ))}
