@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RichText } from "@/components/ui/rich-text";
 import { formatDate, signedUrl, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/tugas-materi")({
@@ -114,7 +115,7 @@ function TugasMateri() {
                 <h2 className="font-display text-lg font-semibold">{item.title}</h2>
                 <p className="mt-1 text-xs text-muted-foreground">{formatDate(item.date)}</p>
                 <p className="mt-2 flex-1 whitespace-pre-line text-sm text-muted-foreground">
-                  {item.description || "-"}
+                  {item.description ? <RichText text={item.description} /> : "-"}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {item.file_url ? (
