@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://class-xitjkta.lovable.app/sitemap.xml

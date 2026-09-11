@@ -4,6 +4,7 @@ import { StorageImage } from "@/components/StorageImage";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/informasi-sekolah")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Informasi Sekolah — SMKN 1 Gunung Talang" },
@@ -45,8 +46,8 @@ function InformasiSekolah() {
                 className="h-16 w-16 rounded-lg border border-border object-cover"
               />
               <div>
-                <h2 className="font-display text-xl font-bold">{data?.['name'] || "-"}</h2>
-                <p className="text-sm text-muted-foreground">{data?.['address'] || "-"}</p>
+                <h2 className="font-display text-xl font-bold">{data?.['name'] || "SMKN 1 Gunung Talang"}</h2>
+                <p className="text-sm text-muted-foreground">{data?.['address'] || "Alamat sekolah akan diperbarui oleh admin."}</p>
               </div>
             </div>
             <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">

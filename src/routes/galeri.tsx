@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { formatDate, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/galeri")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Galeri — XI TJKT A SMKN 1 Gunung Talang" },

@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/prestasi")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Prestasi — XI TJKT A SMKN 1 Gunung Talang" },

@@ -22,6 +22,7 @@ import { Route as PengumumanRouteImport } from './routes/pengumuman'
 import { Route as PrestasiRouteImport } from './routes/prestasi'
 import { Route as ProfilKelasRouteImport } from './routes/profil-kelas'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TugasMateriRouteImport } from './routes/tugas-materi'
 import { Route as WaliKelasRouteImport } from './routes/wali-kelas'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -92,6 +93,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TugasMateriRoute = TugasMateriRouteImport.update({
   id: '/tugas-materi',
   path: '/tugas-materi',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
   '/admin/login': typeof AdminLoginRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
   '/admin/login': typeof AdminLoginRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   '/prestasi': typeof PrestasiRoute
   '/profil-kelas': typeof ProfilKelasRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tugas-materi': typeof TugasMateriRoute
   '/wali-kelas': typeof WaliKelasRoute
   '/admin/login': typeof AdminLoginRoute
@@ -192,6 +201,7 @@ export interface FileRouteTypes {
     | '/prestasi'
     | '/profil-kelas'
     | '/reset-password'
+    | '/sitemap.xml'
     | '/tugas-materi'
     | '/wali-kelas'
     | '/admin/login'
@@ -211,6 +221,7 @@ export interface FileRouteTypes {
     | '/prestasi'
     | '/profil-kelas'
     | '/reset-password'
+    | '/sitemap.xml'
     | '/tugas-materi'
     | '/wali-kelas'
     | '/admin/login'
@@ -231,6 +242,7 @@ export interface FileRouteTypes {
     | '/prestasi'
     | '/profil-kelas'
     | '/reset-password'
+    | '/sitemap.xml'
     | '/tugas-materi'
     | '/wali-kelas'
     | '/admin/login'
@@ -252,6 +264,7 @@ export interface RootRouteChildren {
   PrestasiRoute: typeof PrestasiRoute
   ProfilKelasRoute: typeof ProfilKelasRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TugasMateriRoute: typeof TugasMateriRoute
   WaliKelasRoute: typeof WaliKelasRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -350,6 +363,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tugas-materi': {
       id: '/tugas-materi'
       path: '/tugas-materi'
@@ -416,6 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrestasiRoute: PrestasiRoute,
   ProfilKelasRoute: ProfilKelasRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TugasMateriRoute: TugasMateriRoute,
   WaliKelasRoute: WaliKelasRoute,
   AdminLoginRoute: AdminLoginRoute,

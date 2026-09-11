@@ -4,6 +4,7 @@ import { StorageImage } from "@/components/StorageImage";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/wali-kelas")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Wali Kelas — XI TJKT A SMKN 1 Gunung Talang" },
@@ -32,7 +33,7 @@ function WaliKelas() {
              className="mx-auto aspect-[3/4] max-h-[420px] w-full max-w-xs rounded-lg border border-border object-cover shadow-panel md:max-h-none"
           />
           <div>
-            <h2 className="font-display text-2xl font-bold">{data?.['name'] || "-"}</h2>
+            <h2 className="font-display text-2xl font-bold">{data?.['name'] || "Wali Kelas XI TJKT A"}</h2>
             <p className="mt-1 text-sm font-medium text-primary">{data?.['position'] || "Wali Kelas"}</p>
             <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
               {data?.['description'] || "Belum diisi."}
