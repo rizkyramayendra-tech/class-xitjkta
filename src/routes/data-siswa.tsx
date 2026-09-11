@@ -23,6 +23,7 @@ import {
 import { useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/data-siswa")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Data Siswa — XI TJKT A SMKN 1 Gunung Talang" },

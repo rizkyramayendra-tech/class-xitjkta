@@ -5,6 +5,7 @@ import { SecuritySettings } from "@/components/admin/SecuritySettings";
 import { SectionRenderer, CONTENT_SECTIONS, CRUD_SECTIONS } from "@/components/admin/sections";
 
 export const Route = createFileRoute("/_protected/admin/$section")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Kelola Konten — Admin XI TJKT A" },

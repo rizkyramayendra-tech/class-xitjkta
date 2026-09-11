@@ -4,6 +4,7 @@ import { StorageImage } from "@/components/StorageImage";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/profil-kelas")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Profil Kelas — XI TJKT A SMKN 1 Gunung Talang" },

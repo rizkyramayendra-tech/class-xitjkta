@@ -15,6 +15,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/cms";
 
 export const Route = createFileRoute("/_protected/admin/")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Dashboard Admin — XI TJKT A" },

@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatDate, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/agenda")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Agenda Kelas — XI TJKT A SMKN 1 Gunung Talang" },

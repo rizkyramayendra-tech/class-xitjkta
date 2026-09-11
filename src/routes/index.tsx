@@ -30,6 +30,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatDate, useSiteContent, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "XI TJKT A — Portal Kelas SMKN 1 Gunung Talang" },

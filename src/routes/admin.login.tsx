@@ -12,6 +12,7 @@ import { getAdminStatus, setupAdminAccount } from "@/lib/admin.functions";
 import { logActivity } from "@/lib/cms";
 
 export const Route = createFileRoute("/admin/login")({
+  staticData: { sitemap: false },
   ssr: false,
   head: () => ({
     meta: [

@@ -4,6 +4,7 @@ import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/kontak")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Kontak — XI TJKT A SMKN 1 Gunung Talang" },

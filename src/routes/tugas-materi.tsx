@@ -10,6 +10,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDate, signedUrl, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/tugas-materi")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Tugas & Materi — XI TJKT A SMKN 1 Gunung Talang" },
