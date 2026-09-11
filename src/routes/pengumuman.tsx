@@ -4,6 +4,7 @@ import { SiteLayout, PageHeader, EmptyState } from "@/components/site/SiteLayout
 import { StorageImage } from "@/components/StorageImage";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RichText } from "@/components/ui/rich-text";
 import { formatDate, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/pengumuman")({
@@ -69,7 +70,7 @@ function Pengumuman() {
                   </div>
                   <h2 className="font-display text-xl font-semibold">{item.title}</h2>
                    <p className="mt-2 break-words whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                    {item.content}
+                    {item.content ? <RichText text={item.content} /> : "-"}
                   </p>
                 </article>
               </li>
