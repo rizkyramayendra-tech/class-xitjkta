@@ -3,6 +3,7 @@ import { CalendarDays, Clock, MapPin } from "lucide-react";
 import { SiteLayout, PageHeader, EmptyState } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RichText } from "@/components/ui/rich-text";
 import { formatDate, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/agenda")({
@@ -68,12 +69,12 @@ function Agenda() {
                     ) : null}
                     {item.location ? (
                       <span className="inline-flex items-center gap-1.5">
-                        <MapPin className="h-3.5 w-3.5" aria-hidden="true" /> {item.location}
+                        <MapPin className="h-3.5 w-3.5" aria-hidden="true" /> <RichText text={item.location} />
                       </span>
                     ) : null}
                   </div>
                    <p className="mt-3 break-words whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
+                    {item.description ? <RichText text={item.description} /> : "-"}
                   </p>
                 </div>
               </li>
