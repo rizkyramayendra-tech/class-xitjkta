@@ -123,7 +123,7 @@ function NetworkVisual() {
       <div className="absolute left-5 top-5 rounded-md border border-border bg-background/90 px-2.5 py-1.5 font-mono text-[9px] font-semibold uppercase text-muted-foreground shadow-sm backdrop-bl[...]
         TJKT Network / Online
       </div>
-      <svg className="network-lines absolute inset-0 h-full w-full text-primary/55" viewBox="0 0 520 325" fill="none">
+      <svg className="network-lines absolute inset-0 h-full w-full text-primary" viewBox="0 0 520 325" fill="none">
         <path d="M82 84 176 120 263 69 357 111 443 72" />
         <path d="M176 120 119 225 250 260 357 207 443 248" />
         <path d="M263 69 270 164 357 207" />
