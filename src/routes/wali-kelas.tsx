@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
 import { StorageImage } from "@/components/StorageImage";
+import { RichText } from "@/components/ui/rich-text";
 import { useSiteContent } from "@/lib/cms";
 
 export const Route = createFileRoute("/wali-kelas")({
@@ -36,10 +37,10 @@ function WaliKelas() {
             <h2 className="font-display text-2xl font-bold">{data?.['name'] || "Wali Kelas XI TJKT A"}</h2>
             <p className="mt-1 text-sm font-medium text-primary">{data?.['position'] || "Wali Kelas"}</p>
             <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-              {data?.['description'] || "Belum diisi."}
+              {data?.['description'] ? <RichText text={data['description']} /> : "Belum diisi."}
             </p>
             <blockquote className="mt-6 rounded-lg border-l-4 border-primary bg-secondary p-4 text-sm italic">
-              “{data?.['message'] || "Belum ada pesan."}”
+              "{data?.['message'] ? <RichText text={data['message']} /> : "Belum ada pesan."}"
             </blockquote>
           </div>
         </div>
