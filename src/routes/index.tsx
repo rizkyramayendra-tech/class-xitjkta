@@ -120,7 +120,7 @@ function NetworkVisual() {
     <div className="relative mx-auto aspect-[16/10] w-full max-w-xl overflow-hidden rounded-xl border border-primary/20 bg-card shadow-panel" aria-hidden="true">
       <div className="grid-tech absolute inset-0 opacity-60" />
       <div className="absolute inset-x-0 top-0 h-px bg-primary/50" />
-      <div className="absolute left-5 top-5 rounded-md border border-border bg-background/90 px-2.5 py-1.5 font-mono text-[9px] font-semibold uppercase text-muted-foreground shadow-sm backdrop-bl[...]
+      <div className="absolute left-5 top-5 rounded-md border border-border bg-background/90 px-2.5 py-1.5 font-mono text-[9px] font-semibold uppercase text-muted-foreground shadow-sm backdrop-blur">
         TJKT Network / Online
       </div>
       <svg className="network-lines absolute inset-0 h-full w-full text-primary" viewBox="0 0 520 325" fill="none">
@@ -137,7 +137,7 @@ function NetworkVisual() {
       <div className="absolute right-[10%] top-[18%] grid h-9 w-9 place-items-center rounded-full border border-primary/30 bg-background text-primary shadow-sm">
         <Wifi className="h-4 w-4" />
       </div>
-      <div className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-primary/30 bg-primary text-primary-foreground shadow-p[...]
+      <div className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-primary/30 bg-primary text-primary-foreground shadow-panel">
         <Router className="h-9 w-9" />
       </div>
       <div className="absolute bottom-[18%] left-[14%] grid h-10 w-10 place-items-center rounded-lg border border-border bg-background text-primary shadow-sm">
@@ -147,7 +147,7 @@ function NetworkVisual() {
         <RadioTower className="h-5 w-5" />
       </div>
 
-      <div className="absolute bottom-3 left-3 right-3 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-lg border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur sm[...]
+      <div className="absolute bottom-3 left-3 right-3 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-lg border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur sm:bottom-4 sm:left-4 sm:right-4 sm:py-2.5">
         <span className="grid h-8 w-8 place-items-center rounded-md bg-secondary text-primary"><Sparkles className="h-4 w-4" /></span>
         <span className="min-w-0">
           <span className="block text-[10px] font-semibold uppercase text-muted-foreground">Kompetensi Keahlian</span>
@@ -241,7 +241,7 @@ function Beranda() {
       <section className="border-b border-border bg-card" aria-label="Ringkasan kelas">
         <div className="stagger-children mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
-            <div key={stat.label} className={`flex items-center gap-3 border-border px-4 py-3.5 sm:px-6 ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b lg:border-b-0" : ""} lg:border[...]
+            <div key={stat.label} className={`flex items-center gap-3 border-border px-4 py-3.5 sm:px-6 ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b lg:border-b-0" : ""} lg:border-r lg:last:border-r-0`}>
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><stat.icon className="h-4 w-4" aria-hidden="true" /></span>
               <span className="min-w-0">
                 <span className="block font-display text-lg font-bold leading-tight sm:text-xl">{stat.value}</span>
@@ -310,7 +310,7 @@ function Beranda() {
         </div>
         <div className="stagger-children grid gap-3 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.7fr)]">
           {featuredQuickLink ? (
-            <Link to={featuredQuickLink.to} className="group relative grid min-h-40 grid-cols-[minmax(0,1fr)_auto] overflow-hidden rounded-lg border border-primary/20 bg-primary p-5 text-primary-[...]
+            <Link to={featuredQuickLink.to} className="group relative grid min-h-40 grid-cols-[minmax(0,1fr)_auto] overflow-hidden rounded-lg border border-primary/20 bg-primary p-5 text-primary-foreground shadow-panel transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               <span className="relative z-10 flex min-w-0 flex-col justify-between">
                 <span className="grid h-11 w-11 place-items-center rounded-md bg-primary-foreground/15"><featuredQuickLink.icon className="h-5 w-5" aria-hidden="true" /></span>
                 <span className="mt-6">
@@ -324,7 +324,7 @@ function Beranda() {
           ) : null}
           <div className="grid gap-3 sm:grid-cols-2">
             {supportingQuickLinks.map((item, index) => (
-              <Link key={item.to} to={item.to} className={`panel panel-interactive group grid min-h-24 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-3.5 ${index === supportingQuickLink[...]
+              <Link key={item.to} to={item.to} className={`panel panel-interactive group grid min-h-24 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-3.5 ${index === supportingQuickLinks.length - 1 ? "sm:col-span-2" : ""}`}>
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><item.icon className="h-4 w-4" aria-hidden="true" /></span>
                 <span className="min-w-0">
                   <span className="block font-display text-sm font-semibold">{item.title}</span>
