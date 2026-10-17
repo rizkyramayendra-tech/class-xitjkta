@@ -10,24 +10,17 @@ import {
   Inbox,
   LaptopMinimal,
   Megaphone,
-  MapPin,
-  Trophy,
   Users,
   BookOpen,
-  Images,
   Router,
   Server,
-  ShieldCheck,
-  Sparkles,
   RadioTower,
   Wifi,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { StorageImage } from "@/components/StorageImage";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { RichText } from "@/components/ui/rich-text";
 import { formatDate, useSiteContent, useTable } from "@/lib/cms";
 
 export const Route = createFileRoute("/")({
@@ -53,10 +46,6 @@ export const Route = createFileRoute("/")({
 });
 
 type Announcement = { id: string; title: string; content: string | null; date: string };
-type Event = { id: string; title: string; date: string; location: string | null };
-type Resource = { id: string; title: string; subject: string | null; type: string; date: string | null };
-type Achievement = { id: string; title: string; year: string | null; category: string | null };
-type GalleryItem = { id: string; title: string; image_url: string; caption: string | null };
 type Schedule = {
   id: string;
   day: string;
@@ -68,67 +57,39 @@ type Schedule = {
   order_no: number;
 };
 
-function SectionTitle({ id, title, to, icon: Icon }: { id: string; title: string; to: string; icon: typeof Users }) {
-  return (
-    <div className="mb-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-      <h2 id={id} className="flex min-w-0 items-center gap-2 font-display text-base font-semibold sm:text-lg">
-        <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-        {title}
-      </h2>
-      <Button asChild variant="ghost" size="sm">
-        <Link to={to}>
-          <span className="hidden sm:inline">Lihat semua</span><ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
-      </Button>
-    </div>
-  );
-}
-
-function ListSkeleton() {
-  return (
-    <div className="space-y-2">
-      {[0, 1, 2].map((i) => (
-        <Skeleton key={i} className="h-16 w-full" />
-      ))}
-    </div>
-  );
-}
-
 function HomeEmptyState({ title, description }: { title: string; description: string }) {
   return (
-    <div className="flex min-h-32 flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card px-5 py-7 text-center">
-      <span className="mb-2.5 grid h-9 w-9 place-items-center rounded-md bg-secondary text-primary">
-        <Inbox className="h-4 w-4" aria-hidden="true" />
-      </span>
-      <p className="text-sm font-semibold text-foreground">{title}</p>
-      <p className="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">{description}</p>
+    <div className="flex min-h-32 items-center gap-3 py-6">
+      <Inbox className="h-5 w-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+      <div className="min-w-0">
+        <p className="text-sm font-medium">{title}</p>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{description}</p>
+      </div>
     </div>
   );
 }
 
 const quickLinks = [
-  { to: "/data-siswa", title: "Data Siswa", description: "Informasi anggota kelas XI TJKT A.", icon: Users },
-  { to: "/jadwal-pelajaran", title: "Jadwal Pelajaran", description: "Susunan 16 mata pelajaran kelas.", icon: CalendarDays },
-  { to: "/tugas-materi", title: "Tugas & Materi", description: "Akses tugas dan bahan pembelajaran.", icon: BookOpen },
-  { to: "/pengumuman", title: "Pengumuman", description: "Informasi terbaru untuk seluruh kelas.", icon: Megaphone },
-  { to: "/agenda", title: "Agenda", description: "Jadwal kegiatan dan agenda kelas.", icon: ClipboardList },
-  { to: "/jadwal-piket", title: "Jadwal Piket", description: "Pembagian tugas kebersihan kelas.", icon: ShieldCheck },
+  { to: "/jadwal-pelajaran", title: "Jadwal Pelajaran", icon: CalendarDays },
+  { to: "/data-siswa", title: "Data Siswa", icon: Users },
+  { to: "/tugas-materi", title: "Tugas & Materi", icon: BookOpen },
+  { to: "/agenda", title: "Kegiatan", icon: ClipboardList },
 ] as const;
 
 function NetworkVisual() {
   return (
-    <div className="relative mx-auto aspect-[16/10] w-full max-w-xl overflow-hidden rounded-xl border border-primary/20 bg-card shadow-panel" aria-hidden="true">
-      <div className="grid-tech absolute inset-0 opacity-60" />
+    <div className="relative mx-auto aspect-[16/10] w-full max-w-[340px] overflow-hidden rounded-lg border border-border bg-card" aria-hidden="true">
+      <div className="grid-tech absolute inset-0 opacity-25" />
       <div className="absolute inset-x-0 top-0 h-px bg-primary/50" />
       <div className="absolute left-5 top-5 rounded-md border border-border bg-background/90 px-2.5 py-1.5 font-mono text-[9px] font-semibold uppercase text-muted-foreground shadow-sm backdrop-blur">
-        TJKT Network / Online
+        Jaringan TJKT
       </div>
-      <svg className="network-lines absolute inset-0 h-full w-full text-primary" viewBox="0 0 520 325" fill="none">
-        <path d="M82 84 176 120 263 69 357 111 443 72" />
-        <path d="M176 120 119 225 250 260 357 207 443 248" />
-        <path d="M263 69 270 164 357 207" />
-        <path d="M82 84 68 239 119 225" />
-        <path d="M270 164 176 120M270 164 250 260M270 164 443 248" />
+      <svg className="absolute inset-0 h-full w-full text-primary/50" viewBox="0 0 520 325" fill="none">
+        <path stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 6" d="M82 84 176 120 263 69 357 111 443 72" />
+        <path stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 6" d="M176 120 119 225 250 260 357 207 443 248" />
+        <path stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 6" d="M263 69 270 164 357 207" />
+        <path stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 6" d="M82 84 68 239 119 225" />
+        <path stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 6" d="M270 164 176 120M270 164 250 260M270 164 443 248" />
       </svg>
 
       <div className="absolute left-[12%] top-[24%] grid h-11 w-11 place-items-center rounded-lg border border-border bg-background text-primary shadow-sm">
@@ -147,13 +108,7 @@ function NetworkVisual() {
         <RadioTower className="h-5 w-5" />
       </div>
 
-      <div className="absolute bottom-3 left-3 right-3 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-lg border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur sm:bottom-4 sm:left-4 sm:right-4 sm:py-2.5">
-        <span className="grid h-8 w-8 place-items-center rounded-md bg-secondary text-primary"><Sparkles className="h-4 w-4" /></span>
-        <span className="min-w-0">
-          <span className="block text-[10px] font-semibold uppercase text-muted-foreground">Kompetensi Keahlian</span>
-          <span className="block truncate text-xs font-semibold sm:text-sm">Teknik Jaringan & Telekomunikasi</span>
-        </span>
-      </div>
+
     </div>
   );
 }
@@ -178,15 +133,9 @@ function Beranda() {
     orderBy: "date",
     limit: 3,
   });
-  const events = useTable<Event>("events", { orderBy: "date", ascending: true, limit: 3 });
-  const tugas = useTable<Resource>("resources", { orderBy: "created_at", limit: 3 });
-  const prestasi = useTable<Achievement>("achievements", { limit: 3 });
-  const galeri = useTable<GalleryItem>("gallery", { orderBy: "order_no", ascending: true, limit: 6 });
   const schedules = useTable<Schedule>("schedules", { orderBy: "order_no", ascending: true });
   const today = useJakartaToday();
   const todaySchedules = today ? schedules.data?.filter((item) => item.day.toLocaleLowerCase("id-ID") === today.day.toLocaleLowerCase("id-ID")) ?? [] : [];
-  const featuredQuickLink = quickLinks.find((item) => item.to === "/jadwal-pelajaran");
-  const supportingQuickLinks = quickLinks.filter((item) => item.to !== "/jadwal-pelajaran");
 
   const stats = [
     { value: "34", label: "Siswa", icon: Users },
@@ -198,8 +147,8 @@ function Beranda() {
   return (
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border bg-surface">
-        <div className="pointer-events-none absolute inset-0 grid-tech opacity-30" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-7 px-4 py-8 sm:py-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:gap-12 lg:py-12">
+        
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 py-7 sm:py-9 md:grid-cols-[minmax(0,1fr)_minmax(0,0.55fr)] md:gap-8 lg:py-10">
           <div className="reveal-up">
             <Badge variant="secondary" className="mb-3 border border-primary/15 font-mono text-[10px] tracking-normal">
               <RadioTower className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
@@ -207,9 +156,6 @@ function Beranda() {
             </Badge>
             <h1 className="max-w-3xl font-display text-4xl font-bold leading-tight sm:text-5xl">
               {site?.['hero_title'] ?? "XI TJKT A"}
-              <span className="mt-1 block text-xl font-semibold text-muted-foreground sm:text-2xl">
-                Portal Kelas SMKN 1 Gunung Talang
-              </span>
             </h1>
 
             <p className="mt-2 text-base font-semibold leading-snug text-primary sm:text-lg">
@@ -224,27 +170,27 @@ function Beranda() {
               {site?.['hero_description'] ?? "Pusat informasi akademik, kegiatan, dan pembelajaran kelas XI TJKT A."}
             </p>
             <div className="mt-5 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
-              <Button asChild className="w-full sm:w-auto">
+              <Button asChild className="min-h-11 w-full sm:w-auto">
                 <Link to="/profil-kelas">Profil Kelas <ArrowRight className="h-4 w-4" /></Link>
               </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto">
+              <Button asChild variant="outline" className="min-h-11 w-full text-foreground sm:w-auto">
                 <Link to="/jadwal-pelajaran">Jadwal Pelajaran</Link>
               </Button>
             </div>
           </div>
-          <div className="reveal-up [animation-delay:120ms]">
+          <div className="mx-auto w-full max-w-[260px] md:max-w-[340px]">
             <NetworkVisual />
           </div>
         </div>
       </section>
 
       <section className="border-b border-border bg-card" aria-label="Ringkasan kelas">
-        <div className="stagger-children mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <div key={stat.label} className={`flex items-center gap-3 border-border px-4 py-3.5 sm:px-6 ${index % 2 === 0 ? "border-r" : ""} ${index < 2 ? "border-b lg:border-b-0" : ""} lg:border-r lg:last:border-r-0`}>
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><stat.icon className="h-4 w-4" aria-hidden="true" /></span>
+              <span className="grid h-7 w-7 shrink-0 place-items-center text-muted-foreground"><stat.icon className="h-4 w-4" aria-hidden="true" /></span>
               <span className="min-w-0">
-                <span className="block font-display text-lg font-bold leading-tight sm:text-xl">{stat.value}</span>
+                <span className="block font-display text-base font-semibold leading-tight sm:text-lg">{stat.value}</span>
                 <span className="block text-[11px] leading-tight text-muted-foreground sm:text-xs">{stat.label}</span>
               </span>
             </div>
@@ -252,200 +198,90 @@ function Beranda() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 pt-8 sm:pt-10" aria-labelledby="jadwal-hari-ini">
-        <div className="overflow-hidden rounded-lg border border-primary/20 bg-card shadow-panel">
-          <div className="grid gap-4 border-b border-border bg-secondary/60 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-5">
-            <div className="flex min-w-0 items-center gap-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-primary text-primary-foreground">
-                <CalendarCheck2 className="h-5 w-5" aria-hidden="true" />
-              </span>
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:py-10">
+        <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+          <section className="min-w-0" aria-labelledby="jadwal-hari-ini">
+            <div className="flex items-start gap-2.5 border-b border-border pb-4">
+              <CalendarCheck2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
               <div className="min-w-0">
                 <h2 id="jadwal-hari-ini" className="font-display text-lg font-semibold">Jadwal Hari Ini</h2>
-                <p className="truncate text-xs text-muted-foreground">{today ? `${today.day}, ${today.date}` : "Memuat tanggal hari ini..."}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{today ? `${today.day}, ${today.date}` : "Memuat tanggal hari ini…"}</p>
               </div>
             </div>
-            <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-              <Link to="/jadwal-pelajaran">Lihat Jadwal Lengkap <ArrowRight className="h-4 w-4" /></Link>
-            </Button>
-          </div>
-          <div className="p-4 sm:p-5">
             {schedules.isLoading || !today ? (
-              <div className="grid gap-3 md:grid-cols-2">
-                <Skeleton className="h-20 w-full" />
-                <Skeleton className="h-20 w-full" />
-              </div>
+              <div className="space-y-3 py-4">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-14 w-full" />)}</div>
+            ) : schedules.isError ? (
+              <HomeEmptyState title="Jadwal belum dapat dimuat." description="Silakan coba kembali melalui halaman jadwal lengkap." />
             ) : todaySchedules.length ? (
-              <div className="grid gap-3 md:grid-cols-2">
+              <ul className="divide-y divide-border">
                 {todaySchedules.slice(0, 4).map((item) => (
-                  <article key={item.id} className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border border-border bg-background p-3.5 transition-colors hover:border-primary/30">
-                    <div className="flex min-w-20 flex-col items-center justify-center rounded-md bg-secondary px-2 py-2 font-mono text-[11px] font-semibold text-secondary-foreground">
-                      <Clock3 className="mb-1 h-4 w-4 text-primary" aria-hidden="true" />
-                      {[item.start_time, item.end_time].filter(Boolean).join("–") || "-"}
-                    </div>
+                  <li key={item.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 py-3.5">
                     <div className="min-w-0">
-                      <h3 className="truncate text-sm font-semibold">{item.subject}</h3>
-                      <p className="mt-1 truncate text-xs text-muted-foreground">{item.teacher || "Guru belum dicantumkan"}</p>
-                      {item.room ? <p className="mt-1 flex items-center gap-1 text-[11px] text-muted-foreground"><MapPin className="h-3 w-3" aria-hidden="true" />{item.room}</p> : null}
+                      <h3 className="text-sm font-semibold">{item.subject}</h3>
+                      <p className="mt-1 text-xs text-muted-foreground">{[item.teacher, item.room].filter(Boolean).join(" · ") || "Guru belum dicantumkan"}</p>
                     </div>
-                  </article>
+                    <span className="flex shrink-0 items-center gap-1.5 pt-0.5 font-mono text-[11px] text-muted-foreground">
+                      <Clock3 className="h-3 w-3" aria-hidden="true" />
+                      {[item.start_time, item.end_time].filter(Boolean).join("–") || "—"}
+                    </span>
+                  </li>
                 ))}
-                {todaySchedules.length > 4 ? <p className="text-xs text-muted-foreground md:col-span-2">Dan {todaySchedules.length - 4} pelajaran lainnya pada jadwal lengkap.</p> : null}
-              </div>
+                {todaySchedules.length > 4 ? <li className="py-3 text-xs text-muted-foreground">{todaySchedules.length - 4} jadwal lainnya tersedia di halaman lengkap.</li> : null}
+              </ul>
             ) : (
-              <HomeEmptyState title="Belum ada jadwal untuk hari ini." description="Jadwal akan ditampilkan setelah administrator mengisinya." />
+              <HomeEmptyState title="Tidak ada jadwal untuk hari ini." description="Lihat jadwal lengkap untuk hari lainnya." />
             )}
-            <Button asChild variant="outline" size="sm" className="mt-3 w-full sm:hidden">
-              <Link to="/jadwal-pelajaran">Lihat Jadwal Lengkap <ArrowRight className="h-4 w-4" /></Link>
+            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3 min-h-11 text-foreground">
+              <Link to="/jadwal-pelajaran">Lihat Jadwal Lengkap <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             </Button>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:py-10" aria-labelledby="akses-cepat">
-        <div className="mb-4 flex items-end justify-between gap-4">
-          <div>
-            <p className="mb-1 text-xs font-semibold uppercase text-primary">Akses Cepat</p>
-            <h2 id="akses-cepat" className="font-display text-xl font-bold sm:text-2xl">Informasi kelas dalam satu tempat</h2>
-          </div>
+          <section className="min-w-0" aria-labelledby="pengumuman-terbaru">
+            <div className="flex items-start gap-2.5 border-b border-border pb-4">
+              <Megaphone className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+              <div className="min-w-0">
+                <h2 id="pengumuman-terbaru" className="font-display text-lg font-semibold">Pengumuman Terbaru</h2>
+                <p className="mt-1 text-xs text-muted-foreground">Informasi penting untuk kelas</p>
+              </div>
+            </div>
+            {announcements.isLoading ? (
+              <div className="space-y-3 py-4">{[0, 1, 2].map((i) => <Skeleton key={i} className="h-14 w-full" />)}</div>
+            ) : announcements.isError ? (
+              <HomeEmptyState title="Pengumuman belum dapat dimuat." description="Silakan coba kembali melalui halaman pengumuman." />
+            ) : announcements.data?.length ? (
+              <ul className="divide-y divide-border">
+                {announcements.data.map((item) => (
+                  <li key={item.id} className="py-3.5">
+                    <Link to="/pengumuman" className="group block">
+                      <h3 className="text-sm font-semibold transition-colors group-hover:text-primary">{item.title}</h3>
+                      <p className="mt-1 text-xs text-muted-foreground">{formatDate(item.date)}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <HomeEmptyState title="Belum ada pengumuman." description="Pengumuman terbaru akan ditampilkan di sini." />
+            )}
+            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3 min-h-11 text-foreground">
+              <Link to="/pengumuman">Lihat Semua <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            </Button>
+          </section>
         </div>
-        <div className="stagger-children grid gap-3 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.7fr)]">
-          {featuredQuickLink ? (
-            <Link to={featuredQuickLink.to} className="group relative grid min-h-40 grid-cols-[minmax(0,1fr)_auto] overflow-hidden rounded-lg border border-primary/20 bg-primary p-5 text-primary-foreground shadow-panel transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-              <span className="relative z-10 flex min-w-0 flex-col justify-between">
-                <span className="grid h-11 w-11 place-items-center rounded-md bg-primary-foreground/15"><featuredQuickLink.icon className="h-5 w-5" aria-hidden="true" /></span>
-                <span className="mt-6">
-                  <span className="block font-display text-lg font-semibold">{featuredQuickLink.title}</span>
-                  <span className="mt-1 block max-w-xs text-xs leading-relaxed text-primary-foreground/80">{featuredQuickLink.description}</span>
-                </span>
-              </span>
-              <ArrowRight className="relative z-10 h-5 w-5 self-end transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              <CalendarDays className="absolute -bottom-5 right-7 h-28 w-28 text-primary-foreground/10" aria-hidden="true" />
-            </Link>
-          ) : null}
-          <div className="grid gap-3 sm:grid-cols-2">
-            {supportingQuickLinks.map((item, index) => (
-              <Link key={item.to} to={item.to} className={`panel panel-interactive group grid min-h-24 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 p-3.5 ${index === supportingQuickLinks.length - 1 ? "sm:col-span-2" : ""}`}>
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-secondary text-primary"><item.icon className="h-4 w-4" aria-hidden="true" /></span>
-                <span className="min-w-0">
-                  <span className="block font-display text-sm font-semibold">{item.title}</span>
-                  <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">{item.description}</span>
-                </span>
-                <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true" />
-              </Link>
+
+        <section className="mt-8 border-t border-border pt-6 sm:mt-10" aria-labelledby="akses-cepat">
+          <h2 id="akses-cepat" className="mb-4 font-display text-base font-semibold">Akses Cepat</h2>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {quickLinks.map((item) => (
+              <Button key={item.to} asChild variant="outline" className="group h-auto min-h-16 justify-start gap-2.5 whitespace-normal rounded-md bg-card px-3 py-3 text-left text-foreground shadow-none sm:px-4">
+                <Link to={item.to}>
+                  <item.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                  <span className="min-w-0 flex-1 text-sm">{item.title}</span>
+                  <ChevronRight className="hidden h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 sm:block" aria-hidden="true" />
+                </Link>
+              </Button>
             ))}
           </div>
-        </div>
-      </section>
-
-      <div className="border-t border-border bg-surface">
-      <div className="stagger-children mx-auto grid max-w-7xl gap-7 px-4 py-8 lg:grid-cols-2 lg:py-10">
-        <section aria-labelledby="pengumuman-terbaru">
-          <SectionTitle id="pengumuman-terbaru" title="Pengumuman Terbaru" to="/pengumuman" icon={Megaphone} />
-          {announcements.isLoading ? (
-            <ListSkeleton />
-          ) : announcements.data?.length ? (
-            <ul className="space-y-3">
-              {announcements.data.map((item) => (
-                 <li key={item.id} className="panel panel-interactive border-l-2 border-l-primary p-4">
-                  <p className="font-semibold">{item.title}</p>
-                  <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-                    {item.content ? <RichText text={item.content} /> : "-"}
-                  </p>
-                  <p className="mt-2 text-xs text-muted-foreground">{formatDate(item.date)}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <HomeEmptyState title="Belum ada pengumuman." description="Informasi terbaru akan ditampilkan setelah administrator menambahkannya." />
-          )}
         </section>
-
-        <section aria-labelledby="agenda-terdekat">
-          <SectionTitle id="agenda-terdekat" title="Agenda Terdekat" to="/agenda" icon={CalendarDays} />
-          {events.isLoading ? (
-            <ListSkeleton />
-          ) : events.data?.length ? (
-            <ul className="space-y-3">
-              {events.data.map((item) => (
-                 <li key={item.id} className="panel panel-interactive grid grid-cols-[auto_minmax(0,1fr)] gap-3 p-4">
-                   <span className="grid h-9 w-9 place-items-center rounded-md bg-secondary text-primary"><CalendarCheck2 className="h-4 w-4" aria-hidden="true" /></span>
-                   <span className="min-w-0">
-                  <p className="font-semibold">{item.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {formatDate(item.date)} · {item.location ?? "-"}
-                  </p>
-                   </span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <HomeEmptyState title="Belum ada agenda." description="Agenda kelas akan ditampilkan setelah administrator menambahkannya." />
-          )}
-        </section>
-
-        <section aria-labelledby="tugas-materi-terbaru">
-          <SectionTitle id="tugas-materi-terbaru" title="Tugas & Materi Terbaru" to="/tugas-materi" icon={BookOpen} />
-          {tugas.isLoading ? (
-            <ListSkeleton />
-          ) : tugas.data?.length ? (
-            <ul className="space-y-3">
-              {tugas.data.map((item) => (
-                 <li key={item.id} className="panel panel-interactive p-4">
-                   <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-3">
-                     <span className="min-w-0">
-                       <span className="block truncate font-semibold">{item.title}</span>
-                       <span className="mt-1 block text-sm text-muted-foreground">{item.subject ?? "-"}</span>
-                     </span>
-                     <Badge variant="secondary" className="h-fit capitalize">{item.type}</Badge>
-                   </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <HomeEmptyState title="Belum ada tugas atau materi." description="Data akan ditampilkan setelah administrator menambahkannya." />
-          )}
-        </section>
-
-        <section aria-labelledby="prestasi-terbaru">
-          <SectionTitle id="prestasi-terbaru" title="Prestasi Terbaru" to="/prestasi" icon={Trophy} />
-          {prestasi.isLoading ? (
-            <ListSkeleton />
-          ) : prestasi.data?.length ? (
-            <ul className="space-y-3">
-              {prestasi.data.map((item) => (
-                 <li key={item.id} className="panel panel-interactive p-4">
-                  <p className="font-semibold">{item.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {[item.category, item.year].filter(Boolean).join(" · ") || "-"}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <HomeEmptyState title="Belum ada prestasi." description="Prestasi kelas akan ditampilkan setelah administrator menambahkannya." />
-          )}
-        </section>
-
-        <section aria-labelledby="galeri-terbaru" className="lg:col-span-2">
-          <SectionTitle id="galeri-terbaru" title="Galeri Terbaru" to="/galeri" icon={Images} />
-          {galeri.isLoading ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">{[0, 1, 2, 3, 4, 5].map((item) => <Skeleton key={item} className="aspect-square w-full" />)}</div>
-          ) : galeri.data?.length ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-              {galeri.data.map((item) => (
-                <StorageImage
-                  key={item.id}
-                  src={item.image_url}
-                  alt={item.caption ?? item.title}
-                  className="aspect-square w-full rounded-lg border border-border object-cover shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-panel"
-                />
-              ))}
-            </div>
-          ) : (
-            <HomeEmptyState title="Belum ada foto." description="Galeri kelas akan ditampilkan setelah administrator menambahkannya." />
-          )}
-        </section>
-      </div>
       </div>
     </SiteLayout>
   );

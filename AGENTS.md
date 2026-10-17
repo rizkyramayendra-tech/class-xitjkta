@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- The homepage is a read-only overview of the existing CMS: detailed content stays on dedicated routes so presentation changes never mutate school records.
+- The Kegiatan homepage shortcut uses the existing agenda route; do not introduce a duplicate activity page.
