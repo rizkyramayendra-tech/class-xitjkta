@@ -170,10 +170,10 @@ function Beranda() {
               {site?.['hero_description'] ?? "Pusat informasi akademik, kegiatan, dan pembelajaran kelas XI TJKT A."}
             </p>
             <div className="mt-5 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:gap-3">
-              <Button asChild className="w-full sm:w-auto">
+              <Button asChild className="min-h-11 w-full sm:w-auto">
                 <Link to="/profil-kelas">Profil Kelas <ArrowRight className="h-4 w-4" /></Link>
               </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto">
+              <Button asChild variant="outline" className="min-h-11 w-full text-foreground sm:w-auto">
                 <Link to="/jadwal-pelajaran">Jadwal Pelajaran</Link>
               </Button>
             </div>
@@ -231,7 +231,7 @@ function Beranda() {
             ) : (
               <HomeEmptyState title="Tidak ada jadwal untuk hari ini." description="Lihat jadwal lengkap untuk hari lainnya." />
             )}
-            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3">
+            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3 min-h-11 text-foreground">
               <Link to="/jadwal-pelajaran">Lihat Jadwal Lengkap <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             </Button>
           </section>
@@ -262,7 +262,7 @@ function Beranda() {
             ) : (
               <HomeEmptyState title="Belum ada pengumuman." description="Pengumuman terbaru akan ditampilkan di sini." />
             )}
-            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3">
+            <Button asChild variant="ghost" size="sm" className="mt-2 -ml-3 min-h-11 text-foreground">
               <Link to="/pengumuman">Lihat Semua <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             </Button>
           </section>
@@ -272,7 +272,7 @@ function Beranda() {
           <h2 id="akses-cepat" className="mb-4 font-display text-base font-semibold">Akses Cepat</h2>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
             {quickLinks.map((item) => (
-              <Button key={item.to} asChild variant="outline" className="group h-auto min-h-16 justify-start gap-2.5 whitespace-normal rounded-md bg-card px-3 py-3 text-left shadow-none sm:px-4">
+              <Button key={item.to} asChild variant="outline" className="group h-auto min-h-16 justify-start gap-2.5 whitespace-normal rounded-md bg-card px-3 py-3 text-left text-foreground shadow-none sm:px-4">
                 <Link to={item.to}>
                   <item.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                   <span className="min-w-0 flex-1 text-sm">{item.title}</span>
