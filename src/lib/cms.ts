@@ -1,6 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { getPublishedAssetUrl } from "@/lib/storage.functions";
+import { parseStorageRef } from "@/lib/storage-access";
 
 /** Untyped view of the client for generic, table-name-driven helpers. */
 export const db = supabase as unknown as SupabaseClient;
@@ -58,9 +60,14 @@ export async function removeFile(ref: string) {
 export async function signedUrl(ref?: string | null) {
   if (!ref) return null;
   if (/^https?:\/\//.test(ref)) return ref;
-  const [bucket, ...rest] = ref.split("/");
-  if (!bucket || rest.length === 0) return null;
-  const { data } = await supabase.storage.from(bucket).createSignedUrl(rest.join("/"), 60 * 60 * 24);
+  const parsed = parseStorageRef(ref);
+  if (!parsed) return null;
+  const publishedUrl = await getPublishedAssetUrl({ data: { ref } });
+  if (publishedUrl) return publishedUrl;
+  // Draft previews retain the existing authenticated, RLS-enforced admin path.
+  const { data: session } = await supabase.auth.getSession();
+  if (!session.session) return null;
+  const { data } = await supabase.storage.from(parsed.bucket).createSignedUrl(parsed.path, 60 * 60 * 24);
   return data?.signedUrl ?? null;
 }
 
@@ -68,7 +75,7 @@ export function useSignedUrl(ref?: string | null) {
   return useQuery({
     queryKey: ["signed-url", ref],
     enabled: !!ref,
-    staleTime: 1000 * 60 * 60,
+    staleTime: 1000 * 60 * 45,
     queryFn: () => signedUrl(ref),
   });
 }
