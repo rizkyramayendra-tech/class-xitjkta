@@ -40,7 +40,7 @@ export const getPublishedAssetUrl = createServerFn({ method: "POST" })
       const { data: signed, error } = await supabaseAdmin.storage.from(parsed.bucket).createSignedUrl(parsed.path, PUBLIC_ASSET_TTL_SECONDS);
       if (error || !signed) return null;
       const result = new URL(signed.signedUrl);
-      const browserOrigin = new URL(import.meta.env.VITE_SUPABASE_URL);
+      const browserOrigin = new URL(import.meta.env['VITE_SUPABASE_URL']);
       result.protocol = browserOrigin.protocol;
       result.host = browserOrigin.host;
       return result.toString();

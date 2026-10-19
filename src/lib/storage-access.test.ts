@@ -1,4 +1,5 @@
-import { describe, expect, test } from "bun:test";
+import { describe, test } from "node:test";
+import assert from "node:assert/strict";
 import { isPublishedAsset, parseStorageRef, type PublishedAssetReader } from "./storage-access";
 
 const reader = (published: Record<string, string[]> = {}, documents: unknown[] = []): PublishedAssetReader => ({
@@ -8,27 +9,27 @@ const reader = (published: Record<string, string[]> = {}, documents: unknown[] =
 
 describe("Published visitor asset authorization", () => {
   test("published learning materials remain accessible to visitors", async () => {
-    expect(await isPublishedAsset("files/materi/public.pdf", reader({ resources: ["files/materi/public.pdf"] }))).toBe(true);
+    assert.equal(await isPublishedAsset("files/materi/public.pdf", reader({ resources: ["files/materi/public.pdf"] })), true);
   });
   test("unpublished or unreferenced materials cannot receive a public link", async () => {
-    expect(await isPublishedAsset("files/materi/draft.pdf", reader({ resources: ["files/materi/public.pdf"] }))).toBe(false);
+    assert.equal(await isPublishedAsset("files/materi/draft.pdf", reader({ resources: ["files/materi/public.pdf"] })), false);
   });
   test("published photos and site identity images remain accessible", async () => {
-    expect(await isPublishedAsset("media/galeri/public.jpg", reader({ gallery: ["media/galeri/public.jpg"] }))).toBe(true);
-    expect(await isPublishedAsset("media/logo/class.png", reader({}, [{ logo_url: "media/logo/class.png" }]))).toBe(true);
+    assert.equal(await isPublishedAsset("media/galeri/public.jpg", reader({ gallery: ["media/galeri/public.jpg"] })), true);
+    assert.equal(await isPublishedAsset("media/logo/class.png", reader({}, [{ logo_url: "media/logo/class.png" }])), true);
   });
   test("private photos and near-match names cannot receive a public link", async () => {
-    expect(await isPublishedAsset("media/galeri/private.jpg", reader({ gallery: ["media/galeri/public.jpg"] }))).toBe(false);
-    expect(await isPublishedAsset("media/logo/class.png.extra", reader({}, [{ logo_url: "media/logo/class.png" }]))).toBe(false);
+    assert.equal(await isPublishedAsset("media/galeri/private.jpg", reader({ gallery: ["media/galeri/public.jpg"] })), false);
+    assert.equal(await isPublishedAsset("media/logo/class.png.extra", reader({}, [{ logo_url: "media/logo/class.png" }])), false);
   });
   test("path traversal and unknown buckets are rejected", () => {
     for (const ref of ["media/../private.jpg", "files/%2e%2e/private.pdf", "other/public.pdf", "media//photo.jpg"]) {
-      expect(parseStorageRef(ref)).toBeNull();
+      assert.equal(parseStorageRef(ref), null);
     }
   });
   test("a failed publication check does not authorize signing", async () => {
-    await expect(isPublishedAsset("files/private.pdf", {
+    await assert.rejects(isPublishedAsset("files/private.pdf", {
       ...reader(), hasPublishedReference: async () => { throw new Error("Unavailable"); },
-    })).rejects.toThrow("Unavailable");
+    }), /Unavailable/);
   });
 });
